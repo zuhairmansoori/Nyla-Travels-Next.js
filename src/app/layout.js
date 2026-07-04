@@ -1,5 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
+import WhatsappSvg from "@/components/ icons/WhatsappSvg";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +26,19 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-gray-100">
+        <SmoothScroll />
+        <header className="sticky z-50 top-0 right-0 left-0">
+          <nav>
+            <Nav />
+          </nav>
+        </header>
+        {children}
+        <div className='fixed bottom-10 right-5'><WhatsappSvg width={50} height={50} /></div>
+        <Footer />
+
+
+      </body>
     </html>
   );
 }
