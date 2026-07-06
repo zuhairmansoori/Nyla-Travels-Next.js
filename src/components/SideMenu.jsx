@@ -27,9 +27,9 @@ function SideMenu({ ismobile, setismobile, link }) {
 }, [ismobile]);
 
     return (
-        <div>
-            <div data-lenis-prevent className={`${ismobile && "w-full fixed inset-0 bg-black/40 z-40"}`} onClick={() => setismobile(false)}>
-                <div className={`fixed top-0 left-0 h-screen w-4/5 z-50 bg-white text-gray-800 transform transition-all  overflow-y-auto  duration-400  ease-in-out shadow-2xl
+        <div className=''>
+            <div data-lenis-prevent className={`${ismobile && "w-full fixed inset-0 bg-black/40 z-40 "} `} onClick={() => setismobile(false)}>
+                <div className={`fixed top-0  scrollbar-none left-0 h-screen w-4/5 z-50 bg-white text-gray-800 transform transition-all  overflow-y-auto  duration-600  ease-in-out shadow-2xl
                                ${ismobile ? "translate-x-0" : "-translate-x-full"}`}>
                     <div  className='flex items-center justify-between p-2'>
                         <div>

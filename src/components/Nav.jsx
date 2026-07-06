@@ -51,7 +51,7 @@ function Nav() {
                 <div className={`${scroll ? " bg-white/30 backdrop-blur-md shadow-white shadow" : "bg-transparent"} z-50 transition-all duration-300 p-3`}>
                     <div className='flex items-center justify-between '>
                         <div className='flex items-center justify-center gap-3'>
-                            <div onClick={() => setismobile(!ismobile)} className='sm:hidden'>
+                            <div onClick={() => setismobile(!ismobile)} className='md:hidden'>
                                 <Menu />
                             </div>
                             <div className='flex justify-center items-center'>
