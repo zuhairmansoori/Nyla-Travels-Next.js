@@ -49,6 +49,7 @@ const CLASSES = [
  *   departDate: "2026-07-15", // "yyyy-MM-dd" string
  *   returnDate: "2026-07-20", // "yyyy-MM-dd" string
  *   adults: 1,
+ * 
  *   children: 0,
  *   infants: 0,
  *   travelClass: "economy",
@@ -174,7 +175,7 @@ export default function FlightSearchForm({ defaultValues, compact = false }) {
             "md:relative md:left-auto md:top-auto md:translate-x-0 md:translate-y-0 md:self-center"
           )}
         >
-          <ArrowLeftRight className="h-4 w-4 text-[#0d7fd6]" />
+          <ArrowLeftRight className="h-4 w-4 text-[#0d7fd6] transform rotate-90" />
         </button>
 
         <div className="flex-1">

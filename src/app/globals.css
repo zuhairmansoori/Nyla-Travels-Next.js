@@ -7,9 +7,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+ --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-cinzel: var(--font-cinzel);
+  --font-heading: var(--font-cinzel);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,6 +49,9 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --shadow-image:var(--shadow-image)
  
+}
+@utility text-shadow-premium {
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
 }
 
 :root {
@@ -136,7 +140,43 @@ body{
     @apply font-sans;
   }
 }
+h1,h2{
+  font-family: var(--font-heading);
+   color: var(--primary)
+}
 
-/* .imageshadow{
+/* .imageshadow{`
   shadow-[0px_0px_10px_4px_#abaead]
+} */
+
+
+
+/* ========== ऊपर का पुराना code वैसा ही रहेगा ========== */
+
+/* ---- Hero Section Specific ---- */
+/* @layer base {
+  .hero-section {
+    --hero-dark: #001a3d;
+    --hero-dark-lighter: #002a5c;
+    --hero-glow: rgba(13, 127, 214, 0.12);
+    --hero-glow-strong: rgba(13, 127, 214, 0.25);
+    --hero-border: rgba(13, 127, 214, 0.15);
+    --hero-border-strong: rgba(13, 127, 214, 0.3);
+    --hero-card: rgba(0, 26, 61, 0.8);
+    --hero-text-dim: rgba(255, 255, 255, 0.6);
+    --hero-text-bright: #ffffff;
+    --hero-accent: #0d7fd6;
+    --hero-accent-light: #5bb5f0;
+    --hero-accent-soft: rgba(13, 127, 214, 0.1);
+  }
+
+  .dark .hero-section {
+    --hero-dark: #000d1f;
+    --hero-dark-lighter: #001533;
+    --hero-glow: rgba(13, 127, 214, 0.08);
+    --hero-glow-strong: rgba(13, 127, 214, 0.15);
+    --hero-border: rgba(13, 127, 214, 0.1);
+    --hero-border-strong: rgba(13, 127, 214, 0.2);
+    --hero-card: rgba(0, 13, 31, 0.85);
+  }
 } */

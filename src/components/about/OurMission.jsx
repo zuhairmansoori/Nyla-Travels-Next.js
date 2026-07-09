@@ -15,7 +15,7 @@ function OurMission() {
         <div className='flex flex-col md:flex-row items-center  justify-around md:items-center   gap-5 pt-10 px-4 md:px-20'>
           <div className='md:w-1/2'>
             <HeadingMotion>
-               <div className='text-secondary text-3xl md:text-5xl md:pb-10 font-bold text-center'>Our Mission</div>
+               <h2 className='text-3xl  lg:text-5xl text-primary font-cinzel tracking-wider  font-bold mb-8'>Our Mission</h2>
             </HeadingMotion>
            
             <motion.p

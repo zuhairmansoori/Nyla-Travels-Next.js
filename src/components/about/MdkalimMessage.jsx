@@ -11,7 +11,7 @@ function MdkalimMessage() {
                 <div className='flex flex-col-reverse md:flex-row items-center justify-center md:items-center text-lg md:text-xl md:justify-around gap-5 py-10 px-4 md:px-20'>
                     <div className='flex flex-col gap-4 md:w-1/2'>
                     <HeadingMotion>
-                          <h2 className='text-2xl text-secondary text-center sm:text-3xl md:text-4xl lg:text-5xl lg:pb-20 '>Message from MD Kalim</h2>
+                          <h2 className='text-3xl  lg:text-5xl text-primary font-cinzel tracking-wider  font-bold mb-8'>Message from MD Kalim</h2>
                     </HeadingMotion>
                        <HeadingMotion>
                            <h3 className='text-sm sm:text-xl md:text-2xl font-bold p-0'>Welcome to Nyla Travels.</h3>

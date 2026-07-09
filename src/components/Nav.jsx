@@ -47,7 +47,7 @@ function Nav() {
 
     return (
         <div className='relative z-50'>
-            <div className={`${opicity ? "fixed top-0 left-0 right-0 z-50" : "sticky top-0 left-0 right-0 z-50"}`} >
+            <div className={`${opicity ? "fixed top-0 left-0 right-0 z-50" : "sticky top-0 left-0  right-0 z-50"}`} >
                 <div className={`${scroll ? " bg-white/30 backdrop-blur-md shadow-white shadow" : "bg-transparent"} z-50 transition-all duration-300 p-3`}>
                     <div className='flex items-center justify-between '>
                         <div className='flex items-center justify-center gap-3'>
