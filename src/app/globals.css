@@ -140,11 +140,13 @@ body{
     @apply font-sans;
   }
 }
-h1,h2{
+h2{
   font-family: var(--font-heading);
    color: var(--primary)
 }
-
+/* h1{
+  color: var(--secondary);
+} */
 /* .imageshadow{`
   shadow-[0px_0px_10px_4px_#abaead]
 } */

@@ -5,7 +5,8 @@ export function useMediaQuery(query) {
 
   useEffect(() => {
     const media = window.matchMedia(query);
-    setMatches(media.matches);
+    
+    setMatches(media.matches);   // <- YE LINE ADD KAR — initial value set karo turant
 
     const listener = () => setMatches(media.matches);
     media.addEventListener("change", listener);

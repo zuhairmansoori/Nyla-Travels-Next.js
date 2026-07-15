@@ -2,7 +2,7 @@ import { Geist, Geist_Mono ,Cinzel} from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import SmoothScroll from "@/components/SmoothScroll";
+  import {LenisProvider} from "@/components/SmoothScroll";
 import WhatsappSvg from "@/components/ icons/WhatsappSvg";
 
 const geistSans = Geist({
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-gray-100">
-        <SmoothScroll />
+        <LenisProvider />
         <header className="sticky z-50 top-0 right-0 left-0">
           <nav>
             <Nav />

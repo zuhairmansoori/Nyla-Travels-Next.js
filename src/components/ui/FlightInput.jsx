@@ -29,22 +29,58 @@ export default function FlightInput({ value, onChange, placeholder, excludeIata 
   const [query, setQuery] = useState("");
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
+  // const filteredAirports = useMemo(() => {
+  //   const base = excludeIata
+  //     ? airports.filter((a) => a.iata !== excludeIata)
+  //     : airports;
+
+  //   if (!query) return base.slice(0, 20);
+  //   const q = query.toLowerCase();
+  //   return base
+  //     .filter(
+  //       (a) =>
+  //         a.city.toLowerCase().includes(q) ||
+  //         a.name.toLowerCase().includes(q) ||
+  //         a.iata.toLowerCase().includes(q) ||
+  //         a.icao.toLowerCase().includes(q)
+  //     )
+  //     .slice(0, 20);
+  // }, [query, excludeIata]);
   const filteredAirports = useMemo(() => {
     const base = excludeIata
       ? airports.filter((a) => a.iata !== excludeIata)
       : airports;
 
     if (!query) return base.slice(0, 20);
-    const q = query.toLowerCase();
-    return base
-      .filter(
-        (a) =>
-          a.city.toLowerCase().includes(q) ||
-          a.name.toLowerCase().includes(q) ||
-          a.iata.toLowerCase().includes(q) ||
-          a.icao.toLowerCase().includes(q)
-      )
-      .slice(0, 20);
+
+    const words = query.toLowerCase().split(/[\s,]+/).filter(Boolean);
+    const q = query.toLowerCase().trim();
+
+    const matched = base.filter((a) => {
+      const searchable = `${a.city} ${a.name} ${a.iata} ${a.icao} ${a.country}`.toLowerCase();
+      return words.every((w) => searchable.includes(w));
+    });
+
+    // relevance score — jitna chhota number, utna upar
+    const scored = matched.map((a) => {
+      const iata = a.iata.toLowerCase();
+      const city = a.city.toLowerCase();
+      const name = a.name.toLowerCase();
+
+      let score = 5; // default - kahin bhi match (fallback)
+
+      if (iata === q) score = 0;                 // exact IATA match ("del" === "del")
+      else if (iata.startsWith(q)) score = 1;     // IATA starts with query
+      else if (city.startsWith(q)) score = 2;     // city starts with query
+      else if (city.includes(q)) score = 3;       // city me kahin bhi
+      else if (name.startsWith(q)) score = 4;     // airport name shuru se
+
+      return { ...a, _score: score };
+    });
+
+    scored.sort((a, b) => a._score - b._score);
+
+    return scored.slice(0, 20);
   }, [query, excludeIata]);
 
   const handleOpenChange = (o) => {
@@ -135,9 +171,9 @@ export default function FlightInput({ value, onChange, placeholder, excludeIata 
   }
 
   return (
-    <Drawer open={open} onOpenChange={handleOpenChange}>
+    <Drawer open={open} onOpenChange={handleOpenChange} repositionInputs={false}>
       <DrawerTrigger asChild>{triggerButton}</DrawerTrigger>
-      <DrawerContent className="h-[85vh]">
+      <DrawerContent className="h-dvh max-h-dvh">
         <div className="px-2 pt-2 h-full flex flex-col">{airportList}</div>
       </DrawerContent>
     </Drawer>

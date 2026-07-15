@@ -7,6 +7,8 @@ import Image from 'next/image'
 import { } from 'lucide-react';
 import SideMenu from './SideMenu'
 import { Button } from './ui/button'
+import GoogleLogIn from './GoogleLogIn'
+import ProfileIcon from './ProfileIcon'
 
 
 const link = [
@@ -48,7 +50,7 @@ function Nav() {
     return (
         <div className='relative z-50'>
             <div className={`${opicity ? "fixed top-0 left-0 right-0 z-50" : "sticky top-0 left-0  right-0 z-50"}`} >
-                <div className={`${scroll ? " bg-white/30 backdrop-blur-md shadow-white shadow" : "bg-transparent"} z-50 transition-all duration-300 p-3`}>
+                <div className={`${scroll ? " bg-white/30 backdrop-blur-md shadow-white shadow" : "bg-white/30 backdrop-blur-md"} z-50 transition-all duration-300 p-3`}>
                     <div className='flex items-center justify-between '>
                         <div className='flex items-center justify-center gap-3'>
                             <div onClick={() => setismobile(!ismobile)} className='md:hidden'>
@@ -66,14 +68,15 @@ function Nav() {
                              <div className='hidden md:block'>
                                 <div className='flex items-center justify-center gap-3 lg:gap-5'>
                                     {link.map((itm) => (
-                                        <Link className={` relative inline-block ${pathname === itm.href && "text-primary after:absolute after:-bottom-1 after:h-1  after:w-full after:rounded-full after:bg-primary after:content-['']"} transition-all duration-300 hover:text-secondary `} key={itm.name} href={itm.href}><div
+                                        <Link className={` relative inline-block ${pathname === itm.href && "text-primary after:absolute after:-bottom-1 after:h-1  after:w-full after:rounded-full after:bg-primary after:content-['']"}  transition-all duration-300 hover:text-secondary `} key={itm.name} href={itm.href}><div
                                         className='flex flex-col items-center justify-center'>{itm.icon}<span>{itm.name}</span></div></Link>
                                     ))}
                             </div>
                             </div> 
                     </div> 
                     <div>
-                        <Button>Login</Button>
+                        {/* <GoogleLogIn/> */}
+                        <ProfileIcon/>
                     </div>
 
                 </div>

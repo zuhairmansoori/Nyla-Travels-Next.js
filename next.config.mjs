@@ -2,7 +2,19 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
-  allowedDevOrigins: ['epixylous-chromatographic-linda.ngrok-free.dev']
+  allowedDevOrigins: ['epixylous-chromatographic-linda.ngrok-free.dev'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        protocol:'https',
+        hostname:'res.cloudinary.com'
+      }
+    ],
+  },
 };
 
 export default nextConfig;

@@ -4,27 +4,31 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { X, ChevronRight } from 'lucide-react'
 import { InstagramIcon, WhatsappIcon } from './ icons/Icons'
-import { lenisInstance } from "@/components/SmoothScroll";
+import { useLenis } from "@/components/SmoothScroll";
 import WhatsappSvg from './ icons/WhatsappSvg'
 import InstagramSvg from './ icons/InstagramSvg'
 import NavIcon from './ icons/NavIcon'
 
 function SideMenu({ ismobile, setismobile, link }) {
     let pathname = usePathname()
-  useEffect(() => {
+ const lenis = useLenis();
+
+useEffect(() => {
+  if (!lenis) return; // instance ready hone tak wait karo
+
   if (ismobile) {
     document.body.style.overflow = "hidden";
-    lenisInstance?.stop();
+    lenis.stop();
   } else {
     document.body.style.overflow = "";
-    lenisInstance?.start();
+    lenis.start();
   }
 
   return () => {
     document.body.style.overflow = "";
-    lenisInstance?.start();
+    lenis.start();
   };
-}, [ismobile]);
+}, [ismobile, lenis]); // ab lenis change hote hi effect re-run hoga
 
     return (
         <div className=''>

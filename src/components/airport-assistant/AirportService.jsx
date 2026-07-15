@@ -8,6 +8,7 @@ import {
   Car,
   Crown,
 } from "lucide-react";
+import HeadingMotion from "../HeadingMotion";
 
 const services = [
   {
@@ -119,11 +120,13 @@ export default function AirportServices() {
             const Icon = service.icon;
 
             return (
+            
               <div
                 key={service.title}
                 className="group rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-xl"
               >
-                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-white transition group-hover:scale-110">
+                <HeadingMotion>
+                   <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-primary text-white transition group-hover:scale-110">
                   <Icon size={30} />
                 </div>
 
@@ -149,6 +152,8 @@ export default function AirportServices() {
                 >
                   Book Now →
                 </a>
+                </HeadingMotion>
+               
               </div>
             );
           })}

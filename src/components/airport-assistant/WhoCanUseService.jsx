@@ -8,6 +8,7 @@ import {
   GraduationCap,
   Map,
 } from "lucide-react";
+import HeadingMotion from "../HeadingMotion";
 
 const travelers = [
   {
@@ -66,18 +67,19 @@ export default function WhoCanUseService() {
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading */}
         <div className="mx-auto mb-14 max-w-2xl text-center">
-          <span className="rounded-full bg-primary/10 px-4 py-1 text-sm font-semibold text-primary">
+          <HeadingMotion><span className="rounded-full bg-primary/10 px-4 py-1 text-sm font-semibold text-primary">
             Suitable For
-          </span>
-
-          <h2 className="mt-4 text-4xl font-bold text-gray-900">
+          </span></HeadingMotion>
+          
+             <HeadingMotion> <h2 className="mt-4 text-4xl font-bold text-gray-900">
             Who Can Use This Service?
-          </h2>
-
-          <p className="mt-4 text-gray-600">
+          </h2></HeadingMotion>
+         
+             <HeadingMotion> <p className="mt-4 text-gray-600">
             Our airport assistance services are designed for every type of
             traveler, ensuring a smooth, comfortable, and stress-free journey.
-          </p>
+          </p></HeadingMotion>
+         
         </div>
 
         {/* Cards */}
@@ -90,7 +92,7 @@ export default function WhoCanUseService() {
                 key={item.title}
                 className="group rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-xl"
               >
-                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white transition duration-300 group-hover:scale-110">
+                 <HeadingMotion> <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white transition duration-300 group-hover:scale-110">
                   <Icon size={30} />
                 </div>
 
@@ -100,7 +102,8 @@ export default function WhoCanUseService() {
 
                 <p className="text-sm leading-6 text-gray-600">
                   {item.description}
-                </p>
+                </p></HeadingMotion>
+               
               </div>
             );
           })}

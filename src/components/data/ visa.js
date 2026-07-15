@@ -1,0 +1,28 @@
+const visa = [
+    {
+       country:"united arab emirates",
+       visaType:["Tourism","Business"],
+       imageUrl:"",
+       validity:"60 days",
+       price:8300,
+       documents:["Passport"],
+       lengthOfStay:"30 days",
+       description:"",
+       isActive:true,
+       entry:"Single",
+       variant:["30 Days Single Entry","60 Days Multiple Entry"],
+    },       
+    {
+       country:"oman",
+       visaType:["Tourism","Business"],
+       imageUrl:"",
+       validity:"90 days",
+       price:4620,
+       documents:["Passport"],
+       lengthOfStay:"10 days",
+       description:"",
+       isActive:true,
+       entry:"Single",
+       variant:["30 Days Single Entry","60 Days Multiple Entry"],
+    },       
+]

@@ -1,6 +1,6 @@
 import React from 'react'
 import ImageMotion from '../ImageMotion'
-
+import HeadingMotion from '../HeadingMotion'
 function AirportAssistant() {
   return (
     <>
@@ -17,16 +17,25 @@ function AirportAssistant() {
             />
           </div>
            <div className="md:w-[55%]">
-             <h2 className='text-3xl  lg:text-5xl text-primary font-cinzel tracking-wider  font-bold mb-8'>
+            <HeadingMotion>
+              <h2 className='text-3xl  lg:text-5xl text-primary font-cinzel tracking-wider  font-bold mb-8'>
               Airport Assistances
              </h2>
+            </HeadingMotion>
+             
              <div className='text-lg lg:text-xl text-justify flex flex-col gap-4'>
-              <p>
+               <HeadingMotion>
+                 <p>
                 Airport Assistance is a premium service designed to make your airport journey smooth, comfortable, and stress-free. Whether you are arriving, departing, or connecting through the airport, our professional representatives provide personalized support at every step.
               </p>
-              <p>
+               </HeadingMotion>
+             
+               <HeadingMotion>
+                   <p>
                 Our services include airport meet & greet, immigration assistance, baggage handling, fast track support, wheelchair assistance, airport transfers, lounge access, and flight guidance. We ensure a seamless travel experience by helping you navigate airport procedures quickly and efficiently, allowing you to travel with confidence and peace of mind.
               </p>
+               </HeadingMotion>
+             
              </div>
            </div>
         </div>

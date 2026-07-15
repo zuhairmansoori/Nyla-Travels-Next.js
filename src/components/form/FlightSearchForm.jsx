@@ -57,6 +57,8 @@ const CLASSES = [
  */
 export default function FlightSearchForm({ defaultValues, compact = false }) {
   const router = useRouter();
+  console.log(defaultValues);
+  
 
   const [tripType, setTripType] = useState(defaultValues?.tripType || "oneway");
 
@@ -175,7 +177,7 @@ export default function FlightSearchForm({ defaultValues, compact = false }) {
             "md:relative md:left-auto md:top-auto md:translate-x-0 md:translate-y-0 md:self-center"
           )}
         >
-          <ArrowLeftRight className="h-4 w-4 text-[#0d7fd6] transform rotate-90" />
+          <ArrowLeftRight className="h-4 w-4 text-[#0d7fd6] transform rotate-90 lg:rotate-0" />
         </button>
 
         <div className="flex-1">

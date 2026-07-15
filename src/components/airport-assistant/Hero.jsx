@@ -3,6 +3,7 @@ import React from 'react'
 import AnimatedText from '../AnimatedText'
 import { Button } from '../ui/button'
 import Link from 'next/link'
+import HeadingMotion from '../HeadingMotion'
 
 function Hero() {
   return (
@@ -31,23 +32,32 @@ function Hero() {
             <div className="w-full mt-15">
               <div className='pb-10  md:m-0'>
                 <AnimatedText>
-                  <h1 className="mb-4 max-w-full text-shadow-premium  font-cinzel text-3xl font-bold text-center lg:text-left lg:w-1/2 text-white md:text-4xl lg:text-6xl">
+                  <HeadingMotion>
+                        <h1 className="mb-4 max-w-full text-shadow-premium  font-cinzel text-3xl font-bold text-center lg:text-left lg:w-1/2 text-white md:text-4xl lg:text-6xl">
                     Airport Meet &
                     Assist Services
                     Worldwide
                   </h1>
+                  </HeadingMotion>
+                 
                   <div className='w-full lg:text-left'>
-                    <p className="mb-8  lg:mr-auto text-center lg:text-left text- max-w-lg leading-8 text-lg lg:text-2xl text-white/90">
+                    <HeadingMotion>
+                          <p className="mb-8  lg:mr-auto text-center lg:text-left text- max-w-lg leading-8 text-lg lg:text-2xl text-white/90">
                       Enjoy a smooth and stress-free airport experience with our professional Meet & Assist services. From arrival to departure, our team is here to guide you every step of the way.
                     </p>
+                    </HeadingMotion>
+                   
                   </div>
 
                 </AnimatedText>
 
               </div>
               <div className='flex justify-start lg:w-1/3'>
-                <Button className='px-8 py-6 rounded-xl font-semibold shadow-xl hover:scale-105 text-xl transition-all duration-300'>
+              <HeadingMotion>
+                     <Button className='px-8 py-6 rounded-xl font-semibold shadow-xl hover:scale-105 text-xl transition-all duration-300'>
                     <Link href="#airport-assistance-form">Get Assistance Now </Link></Button>
+              </HeadingMotion>
+                
               </div>
 
             </div>

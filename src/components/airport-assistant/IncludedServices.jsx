@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import HeadingMotion from '../HeadingMotion'
 
 function IncludedServices() {
     return (
@@ -11,66 +12,71 @@ function IncludedServices() {
 
                         {/* Left Content */}
                         <div>
-
-                            <span className="inline-block rounded-full bg-primary/10 px-4 py-1 text-sm font-semibold text-primary">
+                           <HeadingMotion><span className="inline-block rounded-full bg-primary/10 px-4 py-1 text-sm font-semibold text-primary">
                                 Included Services
-                            </span>
-
-                            <h2 className="mt-4 text-4xl font-bold">
+                            </span></HeadingMotion>
+                            
+                               <HeadingMotion><h2 className="mt-4 text-4xl font-bold">
                                 Everything You Need for a Smooth Airport Experience
-                            </h2>
-
-                            <p className="mt-6 text-gray-600 leading-8">
+                            </h2></HeadingMotion>
+                            
+                                  <HeadingMotion>  <p className="mt-6 text-gray-600 leading-8">
                                 Our airport assistance service is designed to make every step of
                                 your journey simple and stress-free. From the moment you arrive
                                 at the airport until you reach your destination or boarding gate,
                                 our professional team provides complete support to ensure a
                                 comfortable travel experience.
-                            </p>
+                            </p></HeadingMotion>
+                          
 
                             <div className="mt-8 space-y-6">
 
                                 <div>
-                                    <h3 className="text-xl font-semibold">Meet & Greet</h3>
+                                    <HeadingMotion><h3 className="text-xl font-semibold">Meet & Greet</h3>
                                     <p className="mt-2 text-gray-600">
                                         Our representative welcomes you personally and assists you
                                         throughout your airport journey.
-                                    </p>
+                                    </p></HeadingMotion>
+                                    
                                 </div>
 
                                 <div>
-                                    <h3 className="text-xl font-semibold">Immigration & Boarding Assistance</h3>
+                                    <HeadingMotion> <h3 className="text-xl font-semibold">Immigration & Boarding Assistance</h3>
                                     <p className="mt-2 text-gray-600">
                                         We help you complete immigration, check-in and boarding
                                         procedures quickly and efficiently.
-                                    </p>
+                                    </p></HeadingMotion>
+                                   
                                 </div>
 
                                 <div>
-                                    <h3 className="text-xl font-semibold">Baggage & Airport Escort</h3>
+                                    <HeadingMotion><h3 className="text-xl font-semibold">Baggage & Airport Escort</h3>
                                     <p className="mt-2 text-gray-600">
                                         From luggage handling to escorting you through the airport,
                                         we ensure a hassle-free experience.
-                                    </p>
+                                    </p></HeadingMotion>
+                                    
                                 </div>
 
                                 <div>
-                                    <h3 className="text-xl font-semibold">Additional Premium Services</h3>
+                                    <HeadingMotion><h3 className="text-xl font-semibold">Additional Premium Services</h3>
                                     <p className="mt-2 text-gray-600">
                                         Flight updates, wheelchair assistance on request, lounge
                                         booking and airport transfers are also available to make your
                                         journey even more comfortable.
-                                    </p>
+                                    </p></HeadingMotion>
+                                    
                                 </div>
 
                             </div>
-
+                            <HeadingMotion>
                             <a
                                 href="#airport-assistance-form"
                                 className="inline-flex mt-10 rounded-xl bg-primary px-7 py-4 text-white font-semibold hover:opacity-90 transition"
                             >
                                 Book Airport Assistance
-                            </a>
+                            </a></HeadingMotion>
+
 
                         </div>
 
