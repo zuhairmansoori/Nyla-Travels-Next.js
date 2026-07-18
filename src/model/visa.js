@@ -12,8 +12,14 @@ const visaSchema = new mongoose.Schema({
         trim:true
     },
     imageUrl:{
+        url:{
         type:String,
         required:true
+        },
+        public_id:{
+             type:String,
+        required:true
+        }
     },
     validity:{
         type:String,

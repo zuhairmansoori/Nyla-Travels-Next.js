@@ -7,9 +7,9 @@ import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 
 
-function FormVisa() {
+function FormVisa({action, Defaultlvalue}) {
   async function handleSubmit(formdata) {
-    const result = await visaImage(formdata)
+    const result = await action(formdata)
     if (result.success) {
       alert(result.message)
     } else {
@@ -22,50 +22,51 @@ function FormVisa() {
         <div className='grid  sm:grid-cols-2 lg:grid-cols-3 p-10  justify-center items-center gap-10'>
           <div className='flex flex-col justify-between items-start gap-4 '>
             <Label>Country</Label>
-            <Input type="text" name="country" id="country" placeholder='Enter Country Name' />
+            <Input type="text" name="country" id="country" placeholder='Enter Country Name' defaultValue={Defaultlvalue?.country} />
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Validity</Label>
-            <Input type="text" name="validity" id="validity" placeholder='Enter Validity' />
+            <Input type="text" name="validity" id="validity" placeholder='Enter Validity'  defaultValue={Defaultlvalue?.validity} />
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Visa Type</Label>
-            <Input type="text" name="visaType" id="visaType" placeholder='Visa Type separted by ,' />
+            <Input type="text" name="visaType" id="visaType" placeholder='Visa Type separted by  ,'  defaultValue={Defaultlvalue?.visaType}  />
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Price</Label>
-            <Input type="number" name="price" id="price" placeholder='price' />
+            <Input type="number" name="price" id="price" placeholder='price'  defaultValue={Defaultlvalue?.price}  />
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Entry</Label>
-            <Input type="text" name="entry" id="entry" placeholder='Entry ' />
+            <Input type="text" name="entry" id="entry" placeholder='Entry ' defaultValue={Defaultlvalue?.entry}  />
           </div>
 
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Length Of Stay</Label>
-            <Input type="text" name="lengthOfStay" id="lengthOfStay" placeholder='Length Of Stay ' />
+            <Input type="text" name="lengthOfStay" id="lengthOfStay" placeholder='Length Of Stay ' defaultValue={Defaultlvalue?.lengthOfStay}/>
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Description</Label>
-            <Textarea name="description" id="description" placeholder='description seprated by ,' >
+            <Textarea name="description" defaultValue={Defaultlvalue?.description} id="description" placeholder='description seprated by ,' >
             </Textarea>
 
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Documents</Label>
-            <Input type="text" name="documents" id="documents" placeholder='Documents seprated by ,' />
+            <Textarea name="documents" id="documents" placeholder='Documents seprated by ,' defaultValue={Defaultlvalue?.documents}> </Textarea>
+            
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
             <Label>Variant</Label>
-            <Input type="text" name="variant" id="variant" placeholder='variant seprwted by , ' />
+            <Input type="text" name="variant" id="variant" placeholder='variant seprwted by , ' defaultValue={Defaultlvalue?.variant} />
           </div>
 
           <div className='flex flex-col justify-between items-center gap-3 '>
@@ -80,6 +81,7 @@ function FormVisa() {
             <Label>Upload Image</Label>
             <Input type="file" accept='image/*' name="image" id="image" placeholder='Upload Images' />
           </div>
+          <Input type={'hidden'} name='id' value={Defaultlvalue?._id} />
 
         </div>
 
