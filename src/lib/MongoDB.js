@@ -3,14 +3,14 @@ import mongoose from "mongoose";
 
 const URI = process.env.MONGODB_URI
 
-let cached = global.Mongoose|| {conn :null,promise:null}
+let cached = global.mongoose|| {conn :null,promise:null}
 
 
 export default async function connectDB(){
     try {
         if(cached.conn) return cached.conn
     if(!cached.promise){
-        cached.promise = mongoose.connect(URI)
+        cached.promise = mongoose.connect(URI,{dbName:"NylaTravels"})
         console.log('db is connected')
     }
     cached.conn = await cached.promise

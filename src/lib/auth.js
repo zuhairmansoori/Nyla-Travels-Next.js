@@ -5,9 +5,9 @@ import { mongodbAdapter } from "@better-auth/mongo-adapter";
 await connectDB()
 console.log('db was connected')
 const client = mongoose.connection.getClient()
-console.log(client.db().databaseName);
+console.log(client.db("NylaTravels").databaseName);
 export const auth = betterAuth({
-    database:mongodbAdapter(client.db()),
+    database:mongodbAdapter(client.db("NylaTravels")),
     baseURL:process.env.BETTER_AUTH_URL,
     secret:process.env.BETTER_AUTH_SECRET,
     socialProviders: {
