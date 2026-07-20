@@ -3,7 +3,7 @@ import { cloud } from '@/lib/cludinary'
 import visaModel from '@/model/visa'
 import connectDB from "@/lib/MongoDB"
 import { revalidatePath } from 'next/cache'
-import { success } from 'better-auth'
+
 
 export async function createVisa(formdata) {
     await connectDB()
@@ -13,14 +13,14 @@ export async function createVisa(formdata) {
     const model = {
         country: formdata.get('country'),
         visaType: formdata.get('visaType')?.toString().split(',').map(itm => itm.trim()),
-        validity: formdata.get('validity'),
+        validity: +formdata.get('validity'),
         price: +formdata.get('price'),
         documents: formdata.get('documents')?.toString().split(',').map(itm => itm.trim()),
-        lengthOfStay: formdata.get('lengthOfStay'),
+        lengthOfStay: +formdata.get('lengthOfStay'),
         description: formdata.get('description'),
-        entry: formdata.get('entry'),
-        variant: formdata.get('variant'),
-        isActive: formdata.get('isActive') === 'true',
+        entry: formdata.get('entry'),  
+        isActive: formdata.get('isActive') === 'true',      
+      
     }
 
     if (!image || image.size === 0) {
@@ -33,7 +33,7 @@ export async function createVisa(formdata) {
         const result = await new Promise((res, rej) => {
             const uploadImage = cloud.uploader.upload_stream(
                 {
-                    folder: 'NYLA-TRAVELS',
+                    folder: 'Nyla-Visa',
                     format: "webp",
                 }, (error, data) => {
                     if (error) rej(error)
@@ -65,13 +65,12 @@ export async function updateVisa(formdata) {
         const model = {
             country: formdata.get('country'),
             visaType: formdata.get('visaType')?.toString().split(',').map(itm => itm.trim()),
-            validity: formdata.get('validity'),
+            validity: +formdata.get('validity'),
             price: +formdata.get('price'),
             documents: formdata.get('documents')?.toString().split(',').map(itm => itm.trim()),
-            lengthOfStay: formdata.get('lengthOfStay'),
+            lengthOfStay: +formdata.get('lengthOfStay'),
             description: formdata.get('description'),
             entry: formdata.get('entry'),
-            variant: formdata.get('variant'),
             isActive: formdata.get('isActive') === 'true',
         };
         const visa = await visaModel.findById(id)
@@ -121,10 +120,11 @@ export async function updateVisa(formdata) {
 }
 
 
-export async function DeleteVisa({ id }) {
+export async function DeleteVisa(id) {
+    console.log('delete id', id)
     try {
         await connectDB()
-        const visa = await visaModel.findByIdAndUpdate(id)
+        const visa = await visaModel.findByIdAndDelete(id)
         if (!visa) {
             return {
                 success: false,

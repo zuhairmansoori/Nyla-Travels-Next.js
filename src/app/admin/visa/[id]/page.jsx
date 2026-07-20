@@ -8,10 +8,11 @@ export default async function Pgae({params}){
     const {id} =  await params
     console.log('id param', id)
     const visa = await visaModel.findById(id)
-    console.log('visa', visa);
+    const data = JSON.parse(JSON.stringify(visa));
+    console.log('visa', data);
     return(
         <>
-        <FormVisa action={updateVisa} Defaultlvalue={visa} />
+        <FormVisa action={updateVisa} Defaultlvalue={data} />
         </>
     )
     
