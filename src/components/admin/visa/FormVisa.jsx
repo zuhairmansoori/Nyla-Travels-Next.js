@@ -6,13 +6,17 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
+import { useFormStatus } from 'react-dom'
+import SubmitBtn from '@/app/admin/SubmitBtn'
  
 function FormVisa({ action, Defaultlvalue }) {
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [preview, setPreview] = useState(Defaultlvalue?.image || null)
- 
+  
   async function handleSubmit(formdata) {
-    setLoading(true)
+  
+    
+    
     try {
       const result = await action(formdata)
       if (result.success) {
@@ -21,7 +25,7 @@ function FormVisa({ action, Defaultlvalue }) {
         alert(result.message)
       }
     } finally {
-      setLoading(false)
+  
     }
   }
  
@@ -175,13 +179,7 @@ function FormVisa({ action, Defaultlvalue }) {
           </div>
  
           <div className="flex justify-center sm:justify-end pt-2">
-            <Button
-              type="submit"
-              disabled={loading}
-              className="px-8 py-4 text-lg w-full sm:w-auto"
-            >
-              {loading ? 'Uploading...' : 'Upload'}
-            </Button>
+           <SubmitBtn/>
           </div>
         </form>
       </div>

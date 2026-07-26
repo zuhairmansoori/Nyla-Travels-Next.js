@@ -62,7 +62,7 @@ function CardCards({ carsData }) {
                     ₹{itm?.Rentday?.price}
                   </p>
                   <p className="text-[11px] text-muted-foreground">
-                    {itm?.Rentday?.Km}
+                    {itm?.Rentday?.Km} Km
                   </p>
                 </div>
                 <div className="bg-accent rounded-xl px-3 py-2.5">
@@ -73,7 +73,7 @@ function CardCards({ carsData }) {
                     ₹{itm?.Rentweek?.price}
                   </p>
                   <p className="text-[11px] text-muted-foreground">
-                    {itm?.Rentweek?.Km}
+                    {itm?.Rentweek?.Km} Km
                   </p>
                 </div>
               </div>

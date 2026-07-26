@@ -30,7 +30,7 @@ export default function PackageCard({ pkg }) {
 
       <ul className="space-y-2 flex justify-center items-baseline mt-4 gap-1.5 sm:gap-4 list-none">
         {pkg.highlights.map((highlight) => (
-          <div className="p-2 bg-gray-200/40 rounded border border-gray-200 hover:bg-gray-300 " key={highlight}>
+          <div className="p-2  bg-gray-200 backdrop-blur-lg rounded  hover:bg-gray-300 " key={highlight}>
             <li
               key={highlight}
               className="flex items-center gap-2 text-[10px] md:text-sm "
@@ -68,7 +68,7 @@ export default function PackageCard({ pkg }) {
             </p>
           </div>
 
-          <button className="rounded bg-secondary px-5 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90">
+          <button className="rounded-lg bg-secondary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90">
             <Link href={`/packages/${pkg.name}`}>View details</Link>
           </button>
         </div>

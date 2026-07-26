@@ -14,7 +14,7 @@ async function uploadImageToCloudinary(file) {
 
   return new Promise((resolve, reject) => {
     const stream = cloud.uploader.upload_stream(
-      { folder: "Nyla-Cars",
+      { folder: "Nyla-Travels/Cars",
         format: "webp",
        }, // apna folder naam yahan set kar sakte ho
       (error, result) => {

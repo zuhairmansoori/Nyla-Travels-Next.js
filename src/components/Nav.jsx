@@ -4,18 +4,18 @@ import { usePathname } from 'next/navigation'
 import React, { useState, useEffect } from 'react'
 import { Menu, Luggage, TicketsPlane, Car, TowerControl, Contact, House, PlaneTakeoff, Hotel } from 'lucide-react'
 import Image from 'next/image'
-import { } from 'lucide-react';
 import SideMenu from './SideMenu'
-import { Button } from './ui/button'
-import GoogleLogIn from './GoogleLogIn'
 import ProfileIcon from './ProfileIcon'
+import { clientAuth } from '@/lib/client-auth'
+import { Button } from './ui/button'
+
 
 
 const link = [
     { name: "Home", href: "/", icon: <House /> },
     { name: "Flight", href: "/flights", icon: <PlaneTakeoff /> },
     { name: 'Hotels', href: '/hotels', icon: <Hotel /> },
-    { name: 'Packages', href: '/packages', icon: <Luggage /> },
+    { name: 'Packages', href: '/activity', icon: <Luggage /> },
     { name: 'Visa', href: '/visa', icon: <TicketsPlane /> },
     { name: 'Cars Rental', href: "/cars-rental", icon: <Car /> },
     { name: "Airport Assistant", href: '/airport-assistent', icon: <TowerControl /> },
@@ -25,6 +25,33 @@ const link = [
 
 function Nav() {
     const [ismobile, setismobile] = useState(false)
+    const [admin , setadmin] = useState(false)
+   useEffect(()=>{
+            async function admins() {
+            try {
+                const session = await clientAuth.getSession()
+            
+                console.log("session client",session);
+                 if(session.data.user.role === 'admin' ){
+                    setadmin(true)
+                    console.log(admin);
+                    
+                 }else{
+                    setadmin(false)
+                    console.log(admin);
+                    
+                 }
+            } catch (error) {
+                setadmin(false)
+            }
+           
+        }
+         admins()
+   },[])
+       
+
+   
+    
     const [scroll, setscroll] = useState(false)
     let pathname = usePathname()
     const opicity = pathname === '/'
@@ -74,7 +101,11 @@ function Nav() {
                             </div>
                             </div> 
                     </div> 
-                    <div>
+                    <div className='flex justify-center items-center gap-4'>
+                        {admin ?( <div>
+                       <Link href={"/admin"} ><Button>Admin</Button></Link>
+                    </div>):""}
+                   
                         {/* <GoogleLogIn/> */}
                         <ProfileIcon/>
                     </div>
@@ -85,9 +116,9 @@ function Nav() {
 
                 </div>
 
-                <SideMenu ismobile={ismobile} setismobile={setismobile} link={link} />
             </div>
         </div>
+                <SideMenu ismobile={ismobile} setismobile={setismobile} link={link} />
         </div >
     )
 }

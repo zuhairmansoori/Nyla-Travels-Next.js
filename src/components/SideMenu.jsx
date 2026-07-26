@@ -12,28 +12,47 @@ import NavIcon from './ icons/NavIcon'
 function SideMenu({ ismobile, setismobile, link }) {
     let pathname = usePathname()
  const lenis = useLenis();
+ console.log("is side mai moble", ismobile);
+ 
+
+// useEffect(() => {
+//   if (!lenis) return; // instance ready hone tak wait karo
+
+//   if (ismobile) {
+//     document.body.style.overflow = "hidden";
+//     lenis.stop();
+//   } else {
+//     document.body.style.overflow = "";
+//     lenis.start();
+//   }
+
+//   return () => {
+//     document.body.style.overflow = "";
+//     lenis.start();
+//   };
+// }, [ismobile, lenis]); // ab lenis change hote hi effect re-run hoga
 
 useEffect(() => {
-  if (!lenis) return; // instance ready hone tak wait karo
+  if (!lenis) return;
 
   if (ismobile) {
-    document.body.style.overflow = "hidden";
     lenis.stop();
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = "";
     lenis.start();
+    document.body.style.overflow = "";
   }
 
   return () => {
     document.body.style.overflow = "";
-    lenis.start();
   };
-}, [ismobile, lenis]); // ab lenis change hote hi effect re-run hoga
+}, [ismobile, lenis]);
+
 
     return (
-        <div className=''>
-            <div data-lenis-prevent className={`${ismobile && "w-full fixed inset-0 bg-black/40 z-40 "} `} onClick={() => setismobile(false)}>
-                <div className={`fixed top-0  scrollbar-none left-0 h-screen w-4/5 z-50 bg-white text-gray-800 transform transition-all  overflow-y-auto  duration-600  ease-in-out shadow-2xl
+        <div className='relative'>
+            <div  className={`${ismobile && "w-full h-full fixed inset-0 bg-black/40 z-40 "} `} onClick={() => setismobile(false)}>  </div>
+                <div data-lenis-prevent className={`fixed top-0  scrollbar-none left-0 h-screen w-4/5 z-50 bg-white text-gray-800 transform transition-all  overflow-y-auto  duration-600  ease-in-out shadow-2xl
                                ${ismobile ? "translate-x-0" : "-translate-x-full"}`}>
                     <div  className='flex items-center justify-between p-2'>
                         <div>
@@ -74,7 +93,7 @@ useEffect(() => {
 
                     </div>
                 </div>
-            </div>
+          
         </div>
     )
 }

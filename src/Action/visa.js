@@ -13,10 +13,10 @@ export async function createVisa(formdata) {
     const model = {
         country: formdata.get('country'),
         visaType: formdata.get('visaType')?.toString().split(',').map(itm => itm.trim()),
-        validity: +formdata.get('validity'),
+        validity: formdata.get('validity'),
         price: +formdata.get('price'),
         documents: formdata.get('documents')?.toString().split(',').map(itm => itm.trim()),
-        lengthOfStay: +formdata.get('lengthOfStay'),
+        lengthOfStay: formdata.get('lengthOfStay'),
         description: formdata.get('description'),
         entry: formdata.get('entry'),  
         isActive: formdata.get('isActive') === 'true',      
@@ -65,10 +65,10 @@ export async function updateVisa(formdata) {
         const model = {
             country: formdata.get('country'),
             visaType: formdata.get('visaType')?.toString().split(',').map(itm => itm.trim()),
-            validity: +formdata.get('validity'),
+            validity: formdata.get('validity'),
             price: +formdata.get('price'),
             documents: formdata.get('documents')?.toString().split(',').map(itm => itm.trim()),
-            lengthOfStay: +formdata.get('lengthOfStay'),
+            lengthOfStay: formdata.get('lengthOfStay'),
             description: formdata.get('description'),
             entry: formdata.get('entry'),
             isActive: formdata.get('isActive') === 'true',
@@ -90,7 +90,7 @@ export async function updateVisa(formdata) {
             const result = await new Promise((res, rej) => {
                 const uploadImage = cloud.uploader.upload_stream(
                     {
-                        folder: 'NYLA-TRAVELS',
+                        folder: 'Nyla-Travels/Visas',
                         format: "webp",
                     }, (error, data) => {
                         if (error) rej(error)

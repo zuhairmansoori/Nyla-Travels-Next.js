@@ -12,7 +12,7 @@ export default async function page({searchParams}) {
 
   return (
     <>
-     <SearchInput divClassName={'lg:w-3/5 m-auto'}/>
+     <SearchInput divClassName={''}/>
       <Suspense key={search} fallback={<SkeletonLoader cardClassName="w-72" gridClassName={'lg:grid-cols-4 max-w-7xl m-auto'} count={'12'} />}>
                 <VisaList search={search}/>
            

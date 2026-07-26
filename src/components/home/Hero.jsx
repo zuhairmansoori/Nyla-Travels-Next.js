@@ -20,7 +20,7 @@ function Hero() {
             <div className="w-full mt-15">
               <div className='pb-10 mt-24 md:m-0'>
                 <AnimatedText>
-                  <h1 className="mb-4 font-cinzel text-shadow-premium max-w-full text-center text-4xl font-bold text-secondary md:text-6xl lg:text-7xl">
+                  <h1 className="mb-4 font-cinzel text-shadow-premium max-w-full text-center text-4xl font-bold text-white md:text-6xl lg:text-7xl">
                     Discover Your Next Adventure
                   </h1>
                   <p className="mb-8 max-w-full text-center text-lg lg:text-2xl text-white/90">

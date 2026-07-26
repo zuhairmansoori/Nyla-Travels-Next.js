@@ -31,8 +31,8 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-gray-100">
-        <LenisProvider />
-        <header className="sticky z-50 top-0 right-0 left-0">
+        <LenisProvider>
+             <header className="sticky z-50 top-0 right-0 left-0">
           <nav>
             <Nav />
           </nav>
@@ -40,8 +40,10 @@ export default function RootLayout({ children }) {
         {children}
         <div className='fixed bottom-10 right-5 z-50'><WhatsappSvg width={50} height={50} /></div>
         <Footer />
+        </LenisProvider>
+      
 
-
+j
       </body>
     </html>
   );

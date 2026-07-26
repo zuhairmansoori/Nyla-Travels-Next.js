@@ -22,7 +22,7 @@ const visaSchema = new mongoose.Schema({
         }
     },
     validity:{
-        type:Number,
+        type:String,
         required:true,
     },
     price:{
@@ -34,7 +34,7 @@ const visaSchema = new mongoose.Schema({
         type:[String]
     },
     lengthOfStay:{
-        type:Number
+        type:String
     },
     description:{
         type:String,

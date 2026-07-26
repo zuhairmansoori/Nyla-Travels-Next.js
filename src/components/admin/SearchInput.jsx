@@ -46,7 +46,7 @@ export default function SearchInput({
   }
 
   return (
-    <div className={`relative w-full mt-10 sm:w-80 ${divClassName}`}>
+    <div className={`relative max-w-full  sm:w-80 lg:w-3/5 m-auto mt-10  ${divClassName}`}>
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
 
       <Input

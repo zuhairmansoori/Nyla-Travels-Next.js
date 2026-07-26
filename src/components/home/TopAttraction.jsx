@@ -1,8 +1,9 @@
 'use client'
-import React from 'react'
+import React,{useEffect,useRef} from 'react'
 import {motion} from 'motion/react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { s } from 'motion/react-client'
 // import { id } from 'zod/locales'
 
 
@@ -46,6 +47,43 @@ const destination = [
 ]
 
 function TopAttraction() {
+  const sliderRef = useRef(null);
+
+useEffect(() => {
+  const slider = sliderRef.current;
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  const down = (e) => {
+    isDown = true;
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  };
+
+  const leave = () => isDown = false;
+  const up = () => isDown = false;
+
+  const move = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2;
+    slider.scrollLeft = scrollLeft - walk;
+  };
+
+  slider.addEventListener("mousedown", down);
+  slider.addEventListener("mouseleave", leave);
+  slider.addEventListener("mouseup", up);
+  slider.addEventListener("mousemove", move);
+
+  return () => {
+    slider.removeEventListener("mousedown", down);
+    slider.removeEventListener("mouseleave", leave);
+    slider.removeEventListener("mouseup", up);
+    slider.removeEventListener("mousemove", move);
+  };
+}, []);
 
   const cname = destination.map((item)=>item.name.toLocaleLowerCase)
   return (
@@ -63,15 +101,15 @@ function TopAttraction() {
       >
          <h2 className=' text-4xl font-bold text-secondary'>Top Attraction</h2>
          <p className="mt-4 text-muted-foreground">
-           `Explore the world's most loved destinations`
+           `Explore the world&apos;s most loved destinations`
           </p>
       </motion.div>
-     <motion.ul 
+     <motion.ul ref={sliderRef}
          initial={{opacity: 1, x:300}}
             whileInView={{opacity: 1,x: 0}}
             transition={{duration:1}}
      
-     className='flex overflow-x-scroll  no-scrollbar gap-4  scroll-smooth p-7 mb-[90px] '>
+     className='flex overflow-x-auto  no-scrollbar gap-4  scroll-smooth p-7 mb-[90px] '>
          {destination.map((pkg)=>(
           <motion.li 
           
@@ -80,7 +118,7 @@ function TopAttraction() {
            <Link href={`/packages/${pkg.name}`}><div className='relative h-[350px] md:h-[400px]  overflow-hidden rounded-2xl '>
               <Image className=' h-full  w-full  object-center  duration-500 transition-transform hover:scale-110'  width={400}
   height={600} src={pkg.img} alt={pkg.name} />
-              <h2 className='absolute left-6 bottom-8 text-2xl text-gray-300 font-semibold '>{pkg.name}</h2>
+              <h3 className='absolute left-6 bottom-8 text-2xl text-gray-200 font-semibold '>{pkg.name}</h3>
             </div>
             </Link> 
             </motion.li>

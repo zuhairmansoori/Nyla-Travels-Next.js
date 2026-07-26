@@ -2,8 +2,9 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+
   
-  allowedDevOrigins: ['epixylous-chromatographic-linda.ngrok-free.dev','192.168.1.11'],
+  allowedDevOrigins: ['epixylous-chromatographic-linda.ngrok-free.dev','192.168.1.10'],
   images: {
     remotePatterns: [
       {
@@ -16,6 +17,11 @@ const nextConfig = {
       }
     ],
   },
+  experimental:{
+    serverActions:{
+      bodySizeLimit:'20mb'
+    }
+  }
 };
 
 export default nextConfig;
