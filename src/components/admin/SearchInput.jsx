@@ -7,7 +7,8 @@ import { Input } from "@/components/ui/input";
 
 export default function SearchInput({
   divClassName,
-  inputClassName
+  inputClassName,
+  pagination
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -24,15 +25,25 @@ export default function SearchInput({
 
     const timer = setTimeout(() => {
       const params = new URLSearchParams(searchParams);
+      console.log("pagination",pagination);
+      
 
-      if (search) {
-        params.set("search", search);
-      } else {
-        params.delete("search");
+      if(search.trim()){
+        params.set("search",search.trim())
+      } else{
+        params.delete("search")
       }
 
-      params.set("page", "1");
-
+      // Pagination reset
+      if(pagination === "offset"){
+         params.set("page", "1");
+      } else if (pagination === "cursor"){
+        params.delete("page")
+        params.delete("cursor")
+      }
+     
+       console.log("params",params.toString());
+       
       router.replace(`?${params.toString()}`);
       setIsPending(false);
     }, 800);

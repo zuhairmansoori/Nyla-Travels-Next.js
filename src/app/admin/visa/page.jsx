@@ -31,7 +31,7 @@ export default async function Pgae({ searchParams }) {
         <>
             <section>
                 <div>
-                    <SearchInput/>
+                    <SearchInput pagination={"offset"}/>
                     <Link href={`/admin/visa/addVisa`} >
                         <Button>+Add Visa </Button>
                     </Link>

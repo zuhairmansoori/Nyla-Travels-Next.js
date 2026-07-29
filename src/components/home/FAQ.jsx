@@ -9,6 +9,7 @@ import { faqs } from "@/components/data/faqs";
 import HeadingMotion from "../HeadingMotion";
 
 export default function FAQ() {
+    console.log("Client ID:", process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
     return (
         <section className="py-10 bg-slate-100">
             <div className="container mx-auto max-w-6xl px-4">

@@ -19,29 +19,29 @@ function OverVision() {
                   
                 
                 </div>
-                <div className='relative md:w-1/2 py-10  flex  justify-end  md:items-center md:justify-end '>
+                <div className='relative md:w-1/2 py-10  flex  justify-center  md:items-center md:justify-center '>
                   <MotionImage
                     initial={{ opacity: 0, x: 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    src='/about/mission.png'
+                    src='https://res.cloudinary.com/dkodhlcuk/image/upload/v1785331818/Boost_Blog_Credibility_with_Personal_Branding_Strategies_-_internete_net_du9qnk.jpg'
                     alt='Our Mission'
-                    width={500}
-                    height={500}
-                    className='rounded-lg shadow-image w-60 h-40 sm:w-90 sm:h-65 lg:w-104 lg:h-80'
+                    width={600}
+                    height={700}
+                    className='rounded-lg shadow-image w-60 h-40 sm:w-90 sm:h-65 lg:w-124 lg:h-120'
                   />
-                  <MotionImage
+                  {/* <MotionImage
                     initial={{ opacity: 0, x: -40 }}
                     whileInView={{ opacity: 1, x: 0 ,rotateY: 25, rotateZ: 30}}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8,delay:0.6 }}
-                    src='/about/mission3.png'
+                    src='https://res.cloudinary.com/dkodhlcuk/image/upload/v1785331478/ChatGPT_Image_Jul_29_2026_06_51_30_PM_wywcsu.png'
                     alt='Our Mission'
                     width={220}
                     height={400}
                     className=' absolute rotate-y-25 rotate-z-30  sm:-left-15 sm:top-3 -left-5 w-35 h-50 sm:w-50 sm:h-72 lg:w-65 lg:h-89 lg:-left-0 object-cover rounded-lg shadow-image'
-                  />
+                  /> */}
                 </div>
               </div>
             </section>

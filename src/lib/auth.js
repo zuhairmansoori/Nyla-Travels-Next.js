@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import connectDB from "./MongoDB";
 import mongoose from "mongoose";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
+import {oneTap} from "better-auth/plugins"
 await connectDB()
 console.log('db was connected')
 const client = mongoose.connection.getClient()
@@ -44,6 +45,9 @@ export const auth = betterAuth({
                 email: profile.email,
             })
         }
-    }
+    },
+    plugins:[
+        oneTap()
+    ]
 }
 )

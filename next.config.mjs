@@ -2,6 +2,7 @@
 const nextConfig = {
   /* config options here */
   reactCompiler: true,
+  
 
   
   allowedDevOrigins: ['epixylous-chromatographic-linda.ngrok-free.dev','192.168.1.10'],

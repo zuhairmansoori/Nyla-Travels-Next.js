@@ -39,12 +39,14 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <span className="px-4 py-1 rounded-full bg-primary/10 text-primary font-semibold text-sm">
           <HeadingMotion>
+          <span className="px-4 py-1 rounded-full bg-primary/10 text-primary font-semibold text-sm">
+
                   Simple Process
+                   </span>
           </HeadingMotion>
             
-          </span>
+         
 
            <HeadingMotion>
                 <h2 className="mt-4 text-4xl font-bold">

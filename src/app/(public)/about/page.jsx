@@ -16,8 +16,8 @@ function page() {
       <About/>
       <Stats/>
       <MdkalimMessage/>
-      <OurMission/>
       <OverVision/>
+      <OurMission/>
       <WhyNyla />
       <Testimonials/>
       <Faq/>

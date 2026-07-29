@@ -11,7 +11,8 @@ function GoogleLogIn() {
         setloding(true)
         await clientAuth.signIn.social({
             provider:'google',
-            callbackURL:'/'
+            callbackURL:'/',
+            
         })
         setloding(false)
     }

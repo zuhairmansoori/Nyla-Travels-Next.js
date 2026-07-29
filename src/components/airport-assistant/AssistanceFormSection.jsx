@@ -1,8 +1,5 @@
 import React from 'react'
 import AirportAssistanceForm from './AirportAssistanceForm'
-import Image from 'next/image'
-import { Meera_Inimai } from 'next/font/google'
-import { li } from 'motion/react-client'
 import { Check } from 'lucide-react';
 import HeadingMotion from '../HeadingMotion'
 

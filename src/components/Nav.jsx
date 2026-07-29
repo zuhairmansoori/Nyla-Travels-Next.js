@@ -8,6 +8,7 @@ import SideMenu from './SideMenu'
 import ProfileIcon from './ProfileIcon'
 import { clientAuth } from '@/lib/client-auth'
 import { Button } from './ui/button'
+import GoogleOneTap from './GoogleOneTap'
 
 
 
@@ -108,6 +109,7 @@ function Nav() {
                    
                         {/* <GoogleLogIn/> */}
                         <ProfileIcon/>
+                        <GoogleOneTap/>
                     </div>
 
                 </div>
