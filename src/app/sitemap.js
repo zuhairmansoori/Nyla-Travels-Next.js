@@ -29,7 +29,7 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/car-rental`,
+      url: `${baseUrl}/cars-rental`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
