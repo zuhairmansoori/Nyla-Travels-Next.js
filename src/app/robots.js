@@ -13,8 +13,8 @@ export default function robots() {
       },
     ],
 
-    sitemap: "https://www.nylatravels.com/sitemap.xml",
+    sitemap: "https://nylatravels.com/sitemap.xml",
 
-    host: "https://www.nylatravels.com",
+    host: "https://nylatravels.com",
   };
 }

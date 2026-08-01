@@ -11,13 +11,13 @@ export default async function connectDB(){
         if(cached.conn) return cached.conn
     if(!cached.promise){
         cached.promise = mongoose.connect(URI,{dbName:"NylaTravels"})
-        console.log('db is connected')
+        // console.log('db is connected')
     }
     cached.conn = await cached.promise
     global.mongoose = cached;
     return cached.conn
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         
     }
     

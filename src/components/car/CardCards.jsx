@@ -2,8 +2,19 @@
 
 import Image from "next/image";
 import { Fuel, DoorOpen, ShieldCheck, Clock3, Truck } from "lucide-react";
+import EmptyState from "../EmptyState";
 
 function CardCards({ carsData }) {
+
+  if(!carsData || carsData?.length === 0){
+    return (
+      <>
+       <EmptyState/>
+      </>
+    )
+  }
+ 
+
   return (
     <section className="py-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto px-4">

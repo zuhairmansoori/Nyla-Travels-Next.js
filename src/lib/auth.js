@@ -4,13 +4,17 @@ import mongoose from "mongoose";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import {oneTap} from "better-auth/plugins"
 await connectDB()
-console.log('db was connected')
+// console.log('db was connected')
 const client = mongoose.connection.getClient()
-console.log(client.db("NylaTravels").databaseName);
+// console.log(client.db("NylaTravels").databaseName);
 export const auth = betterAuth({
     database: mongodbAdapter(client.db("NylaTravels")),
-    baseURL: process.env.BETTER_AUTH_URL,
-    secret: process.env.BETTER_AUTH_SECRET,
+    baseURL: process.env.BETTER_AUTH_URL ,
+    secret: process.env.BETTER_AUTH_SECRET   ,
+    trustedOrigins: [
+        "https://nylatravels.com",
+        "https://www.nylatravels.com"
+    ],
     user: {
         additionalFields: {
             role: {

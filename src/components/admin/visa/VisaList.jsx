@@ -18,7 +18,7 @@ export default async function VisaList({search}) {
 
   // Serialize karo before passing to props for props
 const plainVisas = JSON.parse(JSON.stringify(visaData));
-console.log(plainVisas)
+// console.log(plainVisas)
 
   return (
     <>

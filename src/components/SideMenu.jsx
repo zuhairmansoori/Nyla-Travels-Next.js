@@ -3,50 +3,34 @@ import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { X, ChevronRight } from 'lucide-react'
-import { InstagramIcon, WhatsappIcon } from './ icons/Icons'
 import { useLenis } from "@/components/SmoothScroll";
-import WhatsappSvg from './ icons/WhatsappSvg'
-import InstagramSvg from './ icons/InstagramSvg'
 import NavIcon from './ icons/NavIcon'
 
 function SideMenu({ ismobile, setismobile, link }) {
     let pathname = usePathname()
  const lenis = useLenis();
- console.log("is side mai moble", ismobile);
+//  console.log("is side mai moble", ismobile);
  
+    useEffect(() => {
+        setismobile(false);
+    }, [pathname]);
 
-// useEffect(() => {
-//   if (!lenis) return; // instance ready hone tak wait karo
+    useEffect(() => {
+        if (!lenis) return;
 
-//   if (ismobile) {
-//     document.body.style.overflow = "hidden";
-//     lenis.stop();
-//   } else {
-//     document.body.style.overflow = "";
-//     lenis.start();
-//   }
+        if (ismobile) {
+            lenis.stop();
+            document.body.style.overflow = "hidden";
+        } else {
+            lenis.start();
+            document.body.style.overflow = "";
+        }
 
-//   return () => {
-//     document.body.style.overflow = "";
-//     lenis.start();
-//   };
-// }, [ismobile, lenis]); // ab lenis change hote hi effect re-run hoga
-
-useEffect(() => {
-  if (!lenis) return;
-
-  if (ismobile) {
-    lenis.stop();
-    document.body.style.overflow = "hidden";
-  } else {
-    lenis.start();
-    document.body.style.overflow = "";
-  }
-
-  return () => {
-    document.body.style.overflow = "";
-  };
-}, [ismobile, lenis]);
+        return () => {
+            lenis.start();
+            document.body.style.overflow = "";
+        };
+    }, [ismobile, lenis]);
 
 
     return (
@@ -68,7 +52,7 @@ useEffect(() => {
 
                             {link.map((itm) => (
                                 <div key={itm.name} className={`border ${pathname === itm.href ? "border-sky-800 text-sky-700 bg-linear-to-br from-sky-200 to-white scale-105" : "border-gray-700 text-gray-800 "}  cursor-pointer p-3 w-full max-w-sm rounded-2xl  transition-all duration-400 active:scale-95 `}>
-                                    <Link className={`text-[16px] `} href={itm.href}> <div className='flex items-center justify-between'>
+                                    <Link onClick={() => setismobile(false)} className={`text-[16px] `} href={itm.href}> <div className='flex items-center justify-between'>
                                         <div className='flex items-center justify-between gap-2'>
                                             {itm.icon}
                                             <span className='text-gray-900'>

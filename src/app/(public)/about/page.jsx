@@ -38,7 +38,7 @@ export const metadata = {
     title: "About Nyla Travels",
     description:
       "Discover who we are and why thousands of travelers trust Nyla Travels for flights, hotels, visas, airport transfers, and holiday packages.",
-    url: "https://www.nylatravels.com/about",
+    url: "https://nylatravels.com/about",
     siteName: "Nyla Travels",
     type: "website",
     images: [
@@ -71,9 +71,9 @@ function page() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Nyla Travels",
-    url: "https://www.nylatravels.com",
-    logo: "https://www.nylatravels.com/NylaTravels.svg",
-    image: "https://www.nylatravels.com/og-about.png",
+    url: "https://nylatravels.com",
+    logo: "https://nylatravels.com/NylaTravels.svg",
+    image: "https://nylatravels.com/og-about.png",
     description:
       "Nyla Travels is a trusted travel agency offering flight booking, visa services, holiday packages, airport assistance, travel activities, and car rental services.",
     email: "info@nylatravels.com",

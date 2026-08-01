@@ -26,7 +26,7 @@ export const metadata = {
     title: "Flight Booking | Nyla Travels",
     description:
       "Compare and book flights at the best prices with Nyla Travels. Domestic and international flight booking made easy.",
-    url: "https://www.nylatravels.com/flights",
+    url: "https://nylatravels.com/flights",
     siteName: "Nyla Travels",
     type: "website",
     images: [
@@ -65,15 +65,15 @@ export default function page(){
   description:
     "Search and book domestic and international flights with Nyla Travels. Compare airfares and book airline tickets at the best prices.",
 
-  url: "https://www.nylatravels.com/flights",
+  url: "https://nylatravels.com/flights",
 
-  image: "https://www.nylatravels.com/og-flights.png",
+  image: "https://nylatravels.com/og-flights.png",
 
   provider: {
     "@type": "TravelAgency",
     name: "Nyla Travels",
-    url: "https://www.nylatravels.com",
-    logo: "https://www.nylatravels.com/NylaTravels.png",
+    url: "https://nylatravels.com",
+    logo: "https://nylatravels.com/NylaTravels.png",
     telephone: "+919213909942",
   },
 

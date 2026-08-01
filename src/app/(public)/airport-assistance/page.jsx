@@ -36,7 +36,7 @@ export const metadata = {
     title: "Airport Assistance | Nyla Travels",
     description:
       "Enjoy hassle-free airport assistance with Meet & Greet, Fast Track, wheelchair assistance, and VIP airport services.",
-    url: "https://www.nylatravels.com/airport-assistance",
+    url: "https://nylatravels.com/airport-assistance",
     siteName: "Nyla Travels",
     type: "website",
     images: [
@@ -76,15 +76,15 @@ export default function page() {
     description:
       "Book airport assistance services with Nyla Travels, including Meet & Greet, Fast Track, wheelchair assistance, VIP airport services, and seamless travel support.",
 
-    url: "https://www.nylatravels.com/airport-assistance",
+    url: "https://nylatravels.com/airport-assistance",
 
-    image: "https://www.nylatravels.com/og-airport-assistance.png",
+    image: "https://nylatravels.com/og-airport-assistance.png",
 
     provider: {
       "@type": "TravelAgency",
       name: "Nyla Travels",
-      url: "https://www.nylatravels.com",
-      logo: "https://www.nylatravels.com/NylaTravels.png",
+      url: "https://nylatravels.com",
+      logo: "https://nylatravels.com/NylaTravels.png",
       telephone: "+919213909942",
     },
 

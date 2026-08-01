@@ -33,7 +33,7 @@ export const metadata = {
     title: "Travel Activities & Tours | Nyla Travels",
     description:
       "Book sightseeing tours, adventure activities, attraction tickets, and unforgettable travel experiences with Nyla Travels.",
-    url: "https://www.nylatravels.com/activity",
+    url: "https://nylatravels.com/activity",
     siteName: "Nyla Travels",
     type: "website",
     images: [
@@ -62,7 +62,7 @@ export const metadata = {
 export default async function ActivitiesPage({searchParams}) {
    const params = await searchParams
    const search = params.search
-   console.log('page search',search);
+  //  console.log('page search',search);
    
    const jsonLd = {
   "@context": "https://schema.org",
@@ -73,14 +73,14 @@ export default async function ActivitiesPage({searchParams}) {
   description:
     "Explore and book exciting travel activities, sightseeing tours, desert safaris, attraction tickets, and unforgettable experiences with Nyla Travels.",
 
-  url: "https://www.nylatravels.com/activities",
+  url: "https://nylatravels.com/activities",
 
-  image: "https://www.nylatravels.com/og-activities.png",
+  image: "https://nylatravels.com/og-activities.png",
 
   isPartOf: {
     "@type": "WebSite",
     name: "Nyla Travels",
-    url: "https://www.nylatravels.com",
+    url: "https://nylatravels.com",
   },
 
   publisher: {
@@ -88,7 +88,7 @@ export default async function ActivitiesPage({searchParams}) {
     name: "Nyla Travels",
     logo: {
       "@type": "ImageObject",
-      url: "https://www.nylatravels.com/NylaTravels.png",
+      url: "https://nylatravels.com/NylaTravels.png",
     },
   },
 };

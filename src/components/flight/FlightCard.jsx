@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react'
 
 export default function FlightCard({ flight,onSelect }) {
     const [expanded, setExpanded] = useState(false)
-    console.log(flight)
+  
 
     const legs = flight?.flights || []
     const layovers = flight?.layovers || []

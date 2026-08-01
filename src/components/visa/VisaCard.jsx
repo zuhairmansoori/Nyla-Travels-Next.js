@@ -1,13 +1,20 @@
 "use client"
 import React, { useState } from 'react'
+import EmptyState from "@/components/EmptyState"
 
 import Image from 'next/image'
 
 function VisaCard({visaDatas}) {
 
+    if(!visaDatas || visaDatas.length === 0){
+      return (
+        <>
+        <EmptyState />
+        </>
+      )
+    }
   
-  
-  console.log('filter card',visaDatas)
+  // console.log('filter card',visaDatas)
 
   return (
     <>

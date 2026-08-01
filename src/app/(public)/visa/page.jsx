@@ -31,7 +31,7 @@ export const metadata = {
     title: "Visa Services | Nyla Travels",
     description:
       "Get fast and reliable visa services with Nyla Travels. Apply for tourist, business, and visit visas online.",
-    url: "https://www.nylatravels.com/visa",
+    url: "https://nylatravels.com/visa",
     siteName: "Nyla Travels",
     type: "website",
     images: [
@@ -73,15 +73,15 @@ export default async function page({searchParams}) {
   description:
     "Apply for tourist, business, and visit visas with Nyla Travels. Fast visa processing and expert visa assistance.",
 
-  url: "https://www.nylatravels.com/visa",
+  url: "https://nylatravels.com/visa",
 
-  image: "https://www.nylatravels.com/og-visa.png",
+  image: "https://nylatravels.com/og-visa.png",
 
   provider: {
     "@type": "TravelAgency",
     name: "Nyla Travels",
-    url: "https://www.nylatravels.com",
-    logo: "https://www.nylatravels.com/NylaTravels.png",
+    url: "https://nylatravels.com",
+    logo: "https://nylatravels.com/NylaTravels.png",
     telephone: "+919213909942",
   },
 

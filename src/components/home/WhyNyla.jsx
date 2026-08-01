@@ -10,7 +10,6 @@ import {
 
 } from "lucide-react";
 import { motion } from 'motion/react';
-
 const benefits = [
   {
     title: "Best Flight Deals",

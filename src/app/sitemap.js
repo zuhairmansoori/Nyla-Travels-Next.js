@@ -1,7 +1,7 @@
 // app/sitemap.js
 
 export default function sitemap() {
-  const baseUrl = "https://www.nylatravels.com";
+  const baseUrl = "https://nylatravels.com";
 
   return [
     {

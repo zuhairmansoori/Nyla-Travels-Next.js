@@ -2,7 +2,17 @@
 import React, { useEffect, useState } from 'react'
 import ActivityCard from './ActivityCard'
 import CursorPagination from '../paginations/CursorPagination'
+import EmptyState from '../EmptyState'
 function ActivityCardList({data, search}) {
+
+  if(!data || data.length === 0){
+    return (
+      <>
+      <EmptyState type='packages' />
+      </>
+    )
+  }
+
     const [activities ,setActivities] = useState(data)
      useEffect(() => {
     setActivities(data);

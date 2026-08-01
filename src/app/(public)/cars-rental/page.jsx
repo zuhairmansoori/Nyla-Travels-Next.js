@@ -31,7 +31,7 @@ export const metadata = {
     title: "Car Rental | Nyla Travels",
     description:
       "Book affordable car rentals with Nyla Travels. Economy, SUV, luxury, and family cars available.",
-    url: "https://www.nylatravels.com/car-rental",
+    url: "https://nylatravels.com/car-rental",
     siteName: "Nyla Travels",
     type: "website",
     images: [
@@ -72,15 +72,15 @@ async function page({ searchParams }) {
     description:
       "Rent economy, SUV, luxury, and family cars with Nyla Travels. Flexible daily, weekly, and monthly car rental services at competitive prices.",
 
-    url: "https://www.nylatravels.com/car-rental",
+    url: "https://nylatravels.com/car-rental",
 
-    image: "https://www.nylatravels.com/og-car-rental.png",
+    image: "https://nylatravels.com/og-car-rental.png",
 
     provider: {
       "@type": "TravelAgency",
       name: "Nyla Travels",
-      url: "https://www.nylatravels.com",
-      logo: "https://www.nylatravels.com/NylaTravels.png",
+      url: "https://nylatravels.com",
+      logo: "https://nylatravels.com/NylaTravels.png",
       telephone: "+919213909942",
     },
 

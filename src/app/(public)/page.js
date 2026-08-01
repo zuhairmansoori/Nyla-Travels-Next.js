@@ -35,7 +35,7 @@ export const metadata = {
     title: "Nyla Travels | Your Trusted Travel Partner",
     description:
       "Book flights, hotels, visa services, holiday packages, airport assistance, car rentals, and travel activities with Nyla Travels.",
-    url: "https://www.nylatravels.com",
+    url: "https://nylatravels.com",
     siteName: "Nyla Travels",
     type: "website",
     images: [
@@ -68,9 +68,9 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     name: "Nyla Travels",
-    url: "https://www.nylatravels.com",
-    logo: "https://www.nylatravels.com/NylaTravels.svg",
-    image: "https://www.nylatravels.com/og-home.png",
+    url: "https://nylatravels.com",
+    logo: "https://nylatravels.com/NylaTravels.svg",
+    image: "https://nylatravels.com/og-home.png",
     description:
       "Book flights, visa services, car rentals, activities and airport assistance with Nyla Travels.",
     telephone: "+91 9213909942",
@@ -82,7 +82,7 @@ export default function Home() {
       addressCountry: "IN",
     },
   };
-
+console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
 
   return (
     <>

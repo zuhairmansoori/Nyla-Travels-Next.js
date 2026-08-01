@@ -32,14 +32,14 @@ function Nav() {
             try {
                 const session = await clientAuth.getSession()
             
-                console.log("session client",session);
+                // console.log("session client",session);
                  if(session.data.user.role === 'admin' ){
                     setadmin(true)
-                    console.log(admin);
+                    // console.log(admin);
                     
                  }else{
                     setadmin(false)
-                    console.log(admin);
+                    // console.log(admin);
                     
                  }
             } catch (error) {

@@ -25,7 +25,7 @@ export default function SearchInput({
 
     const timer = setTimeout(() => {
       const params = new URLSearchParams(searchParams);
-      console.log("pagination",pagination);
+      // console.log("pagination",pagination);
       
 
       if(search.trim()){
@@ -42,7 +42,7 @@ export default function SearchInput({
         params.delete("cursor")
       }
      
-       console.log("params",params.toString());
+      //  console.log("params",params.toString());
        
       router.replace(`?${params.toString()}`);
       setIsPending(false);

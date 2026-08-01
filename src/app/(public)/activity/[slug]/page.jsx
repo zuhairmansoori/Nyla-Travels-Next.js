@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
             description:
                 activity.description?.slice(0, 160) ||
                 `Book ${activity.title} online with Nyla Travels.`,
-            url: `https://www.nylatravels.com/activities/${activity.slug}`,
+            url: `https://nylatravels.com/activities/${activity.slug}`,
             siteName: "Nyla Travels",
             type: "website",
             images: [
@@ -89,7 +89,7 @@ export default async function ActivityDetailPage({ params }) {
 
         description: activity.description,
 
-        url: `https://www.nylatravels.com/activities/${activity.slug}`,
+        url: `https://nylatravels.com/activities/${activity.slug}`,
 
         image: activity.images.map((img) => img.url),
 
@@ -103,8 +103,8 @@ export default async function ActivityDetailPage({ params }) {
         provider: {
             "@type": "TravelAgency",
             name: "Nyla Travels",
-            url: "https://www.nylatravels.com",
-            logo: "https://www.nylatravels.com/NylaTravels.png",
+            url: "https://nylatravels.com",
+            logo: "https://nylatravels.com/NylaTravels.png",
         },
 
         additionalProperty: [
@@ -125,7 +125,7 @@ export default async function ActivityDetailPage({ params }) {
             price: activity.price,
             priceCurrency: activity.currency,
             availability: "https://schema.org/InStock",
-            url: `https://www.nylatravels.com/activities/${activity.slug}`,
+            url: `https://nylatravels.com/activities/${activity.slug}`,
         },
     };
 

@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://www.nylatravels.com"),
+  metadataBase: new URL("https://nylatravels.com"),
 
   title: {
     default: "Nyla Travels | Flights, Hotels, Visa & Holiday Packages",
@@ -68,13 +68,13 @@ export const metadata = {
     title: "Nyla Travels",
     description:
       "Book flights, hotels, visas and holiday packages with Nyla Travels.",
-    url: "https://www.nylatravels.com",
+    url: "https://nylatravels.com",
     siteName: "Nyla Travels",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-home.jpg",
         width: 1200,
         height: 630,
         alt: "Nyla Travels",
@@ -87,14 +87,9 @@ export const metadata = {
     title: "Nyla Travels",
     description:
       "Flights, Hotels, Visa Services & Holiday Packages",
-    images: ["/og-image.jpg"],
+    images: ["/og-home.jpg"],
   },
 
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
 };
 
 export default function RootLayout({ children }) {

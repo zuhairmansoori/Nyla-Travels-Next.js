@@ -8,7 +8,7 @@ export function ProfileIcon() {
 const {data,isPending} = clientAuth.useSession()
 if(!data)return<><GoogleLogIn/> </>
 // if(ispanding) return <>Loading...</>
-console.log(data.user.image);
+// console.log(data.user.image);
 
 const name = data?.user?.name?.split(' ')
 

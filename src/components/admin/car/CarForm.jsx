@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 function CarForm({ action, Defaultlvalue }) {
   const [loading, setLoading] = useState(false)
   const [preview, setPreview] = useState(Defaultlvalue?.imageUrl?.url || null)
-  console.log("defaulr value",Defaultlvalue);
+  // console.log("defaulr value",Defaultlvalue);
   
 
   async function handleSubmit(formdata) {

@@ -57,7 +57,7 @@ const CLASSES = [
  */
 export default function FlightSearchForm({ defaultValues, compact = false }) {
   const router = useRouter();
-  console.log(defaultValues);
+  // console.log(defaultValues);
   
 
   const [tripType, setTripType] = useState(defaultValues?.tripType || "oneway");

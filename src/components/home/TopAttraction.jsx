@@ -113,10 +113,10 @@ useEffect(() => {
           <motion.li 
           
             // viewport={{once:true,amount:0.2}}
-          key={pkg.id} className=' rounded-2xl min-w-62.5 duration-300 shaows md:min-w-68.75 overflow-hidden  hover:-translate-y-4 transition-all duration-300 active:scale-110'>
-           <Link href={`/packages/${pkg.name}`}><div className='relative h-[350px] md:h-[400px]  overflow-hidden rounded-2xl '>
+          key={pkg.id} className=' rounded-2xl min-w-62.5 duration-300 shaows md:min-w-68.75 overflow-hidden  hover:-translate-y-4 transition-all active:scale-110'>
+           <Link href={`/activity?search=${pkg.name}`}><div className='relative h-[350px] md:h-[400px]  overflow-hidden rounded-2xl '>
               <Image className=' h-full  w-full  object-center  duration-500 transition-transform hover:scale-110'  width={400}
-  height={600} src={pkg.img} alt={pkg.name} />
+  height={600} src={pkg.img} alt={pkg.name} loading='lazy' />
               <h3 className='absolute left-6 bottom-8 text-2xl text-gray-200 font-semibold '>{pkg.name}</h3>
             </div>
             </Link> 
