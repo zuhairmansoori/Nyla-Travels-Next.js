@@ -1,36 +1,206 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ✈️ Nyla Travels
 
-## Getting Started
+A modern full-stack travel booking platform built with **Next.js 16**, offering flight search, holiday packages, visa information, hotels, activities, and an admin dashboard.
 
-First, run the development server:
+> 🚧 This project is currently under active development.
+
+---
+
+## 📸 Preview
+
+<!-- Add screenshots here -->
+
+| Home | Flights |
+|------|----------|
+| ![Home](./public/screenshots/home.png) | ![Flights](./public/screenshots/flights.png) |
+
+---
+
+# ✨ Features
+
+### 🌍 User Features
+
+- Flight Search
+- Holiday Packages
+- Visa Information
+- Hotels
+- Activities
+- Airport Services
+- Responsive Design
+- SEO Optimized
+- Google Authentication
+- User Dashboard
+
+---
+
+### 🔐 Admin Features
+
+- Dashboard Analytics
+- Manage Flights
+- Manage Packages
+- Manage Visas
+- Manage Activities
+- Manage Hotels
+- Manage Airport Services
+- Image Upload
+- Search & Pagination
+- CRUD Operations
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS
+- Shadcn UI
+- Framer Motion
+
+## Backend
+
+- Next.js Server Actions
+- Better Auth
+- MongoDB
+- Mongoose
+
+## Authentication
+
+- Better Auth
+- Google OAuth
+
+## Image Storage
+
+- Cloudinary
+
+## APIs
+
+- SerpAPI (Google Flights)
+
+---
+
+# 📁 Project Structure
+
+```
+app/
+components/
+actions/
+lib/
+models/
+hooks/
+public/
+middleware.js
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/nyla-travels.git
+```
+
+Go into the project
+
+```bash
+cd nyla-travels
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Create environment file
+
+```env
+NEXT_PUBLIC_BETTER_AUTH_URL=
+BETTER_AUTH_SECRET=
+
+MONGODB_URI=
+
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+SERP_API_KEY=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+```
+
+Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# 🚀 Roadmap
 
-To learn more about Next.js, take a look at the following resources:
+- [x] Flight Search
+- [x] Holiday Packages
+- [x] Visa Module
+- [x] Hotel Module
+- [x] Activities
+- [x] Admin Dashboard
+- [x] Google Authentication
+- [ ] Flight Booking
+- [ ] Payment Gateway
+- [ ] Email Notifications
+- [ ] Booking History
+- [ ] Reviews & Ratings
+- [ ] Multi-language Support
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 📷 Screenshots
 
-## Deploy on Vercel
+Add screenshots of
+![about page](image.png)
+- Home Page
+- Packages
+- Visa Page
+- Hotel Page
+- Admin Dashboard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push your branch
+5. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Developer
+
+**Zuhair Akhtar**
+
+Full Stack Developer
+
+---
+
+⭐ If you like this project, don't forget to star the repository.

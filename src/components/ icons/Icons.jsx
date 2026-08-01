@@ -11,7 +11,7 @@ import {
 export function WhatsappIcon({...props}){
   return(
     <>
-      <FaInstagram {...props} onClick={()=>Instagram()}/>
+      <FaWhatsapp {...props} onClick={()=>Whatsapp()}/>
     </>
   )
 }
@@ -19,7 +19,7 @@ export function WhatsappIcon({...props}){
 export function InstagramIcon({...props}){
   return(
     <>
-     <FaWhatsapp {...props} onClick={()=>Whatsapp()}/>
+     <FaInstagram {...props} onClick={()=>Instagram()}/>
     </>
   )
 }

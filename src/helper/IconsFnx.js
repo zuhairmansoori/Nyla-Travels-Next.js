@@ -11,6 +11,6 @@ export function Whatsapp() {
 export function Instagram() {
      
 
-    window.open(`https://www.instagram.com/nylatravels1/`, '_blank')
+    window.open(`https://www.instagram.com/nyla.travels/`, '_blank')
     
 }

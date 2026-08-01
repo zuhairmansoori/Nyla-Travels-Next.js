@@ -7,8 +7,7 @@ import {
   TicketsPlane,
   Headset,
   Globe,
-  ShieldCheck,
-  Wallet,
+
 } from "lucide-react";
 import { motion } from 'motion/react';
 

@@ -3,16 +3,105 @@ import { Suspense } from "react";
 import ActivityList from "@/components/activity/ActivityList";
 import SkeletonLoader from "@/components/SkeletonLoader";
 import SearchInput from "@/components/admin/SearchInput";
-import { div } from "motion/react-client";
 
+
+
+export const metadata = {
+  title: "Travel Activities & Tours",
+
+  description:
+    "Discover exciting travel activities, sightseeing tours, adventure experiences, attraction tickets, and family-friendly experiences with Nyla Travels.",
+
+  keywords: [
+    "Travel Activities",
+    "Tours",
+    "Sightseeing",
+    "Adventure Activities",
+    "Attraction Tickets",
+    "Things to Do",
+    "Dubai Activities",
+    "City Tours",
+    "Family Activities",
+    "Nyla Travels",
+  ],
+
+  alternates: {
+    canonical: "/activities",
+  },
+
+  openGraph: {
+    title: "Travel Activities & Tours | Nyla Travels",
+    description:
+      "Book sightseeing tours, adventure activities, attraction tickets, and unforgettable travel experiences with Nyla Travels.",
+    url: "https://www.nylatravels.com/activity",
+    siteName: "Nyla Travels",
+    type: "website",
+    images: [
+      {
+        url: "/og-activities.png",
+        width: 1200,
+        height: 630,
+        alt: "Travel Activities & Tours",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Travel Activities & Tours | Nyla Travels",
+    description:
+      "Explore and book the best travel activities and tours with Nyla Travels.",
+    images: ["/og-activities.png"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 export default async function ActivitiesPage({searchParams}) {
    const params = await searchParams
    const search = params.search
    console.log('page search',search);
    
+   const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+
+  name: "Travel Activities",
+
+  description:
+    "Explore and book exciting travel activities, sightseeing tours, desert safaris, attraction tickets, and unforgettable experiences with Nyla Travels.",
+
+  url: "https://www.nylatravels.com/activities",
+
+  image: "https://www.nylatravels.com/og-activities.png",
+
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Nyla Travels",
+    url: "https://www.nylatravels.com",
+  },
+
+  publisher: {
+    "@type": "TravelAgency",
+    name: "Nyla Travels",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://www.nylatravels.com/NylaTravels.png",
+    },
+  },
+};
 
    
     return (
+      <>
+       <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd),
+      }}
+    />
         <div className=" py-5">
             <SearchInput pagination={"cursor"}/>
         <div className=" px-4 py-10" >
@@ -31,5 +120,6 @@ export default async function ActivitiesPage({searchParams}) {
            
         </div>
         </div>
+    </>
     );
 }
