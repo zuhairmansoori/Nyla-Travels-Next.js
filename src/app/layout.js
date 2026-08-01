@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono ,Cinzel} from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Footer from "@/components/Footer";
   import {LenisProvider} from "@/components/SmoothScroll";
 import WhatsappSvg from "@/components/ icons/WhatsappSvg";
@@ -99,6 +100,7 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-gray-100">
+         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         <LenisProvider>
              <header className="sticky z-50 top-0 right-0 left-0">
           <nav>
@@ -109,9 +111,7 @@ export default function RootLayout({ children }) {
         <div className='fixed bottom-10 right-5 z-50'><WhatsappSvg width={50} height={50} /></div>
         <Footer />
         </LenisProvider>
-      
-
-j
+    
       </body>
     </html>
   );
