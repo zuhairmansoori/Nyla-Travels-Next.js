@@ -39,9 +39,9 @@ function VisaCard({visaDatas}) {
              <h3 className=" min-h-20 flex items-center justify-center  text-xl lg:text-3xl  pt-3 text-gray-300 font-bold font-cinzel text-center">{visa.country}</h3>
               <div className="h-[0.5px] w-[90%] bg-gray-300 my-3  "></div>
              <div className='flex justify-between items-center text-gray-300 gap-3'>
-                <p className='flex flex-col justify-center font-bold items-center text-[14px] lg:text-[18px]'>Stay <span className='text-[12px] lg:text-[15px] text-semibold'>{visa.lengthOfStay}</span></p>
-                <p className='flex flex-col justify-center font-bold items-center text-[14px] lg:text-[18px]'>Validity <span className='text-[12px] lg:text-[15px] text-semibold' >{visa.validity}</span></p>
-                <p className='flex flex-col justify-center font-bold items-center   text-[14px] lg:text-[18px]'>Fees <span className='text-[12px] lg:text-[15px] text-semibold'>₹{visa.price}</span></p>
+                <p className='flex flex-col justify-center font-bold items-center text-[14px] lg:text-[18px]'>Stay <span className='text-[10px] lg:text-[15px] text-semibold'>{visa.lengthOfStay}</span></p>
+                <p className='flex flex-col justify-center font-bold items-center text-[14px] lg:text-[18px]'>Validity <span className='text-[10px] lg:text-[15px] text-semibold' >{visa.validity}</span></p>
+                <p className='flex flex-col justify-center font-bold items-center   text-[14px] lg:text-[18px]'>Fees <span className='text-[10px] lg:text-[15px] text-semibold'>₹{visa.price}</span></p>
 
               </div> 
              <div className="h-[0.5px]  bg-gray-300 my-3 w-[90%] "></div>

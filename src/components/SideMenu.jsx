@@ -66,7 +66,7 @@ function SideMenu({ ismobile, setismobile, link }) {
                                 </div>
 
                             ))}
-                            <div className='w-full border border-gray-700 rounded-2xl py-4 mt-5 flex flex-col justify-center gap-4'>
+                            <div className='w-full  rounded-2xl py-4 mt-5 flex flex-col justify-center gap-4'>
                                 <NavIcon/>
 
                             </div>
