@@ -23,7 +23,7 @@ function VisaCard({visaDatas}) {
      <div className='grid grid-cols-2 sm:grid-cols-3  lg:grid-cols-4 justify-between items-center gap-2 lg:gap-10 py-10 px-3 max-w-7xl m-auto'>
       {visaDatas.map((visa)=>(
         <div  key={visa._id}>
-          <div className="relative w-[180px] h-[300px] lg:w-[250px] lg:h-[400px] rounded-2xl overflow-hidden ">
+          <div className="relative w-[170px] h-[300px] sm:w-[190px] lg:w-[250px] lg:h-[400px] rounded-2xl overflow-hidden ">
              <Image
               src={visa.imageUrl.url}
               alt={visa.country}
