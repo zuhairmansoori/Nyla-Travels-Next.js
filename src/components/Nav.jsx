@@ -84,12 +84,14 @@ function Nav() {
                             <div onClick={() => setismobile(!ismobile)} className='md:hidden'>
                                 <Menu />
                             </div>
+                            <Link href={"/"} className='flex items-center justify-center gap-4'>
                             <div className='flex justify-center items-center'>
                                 <Image src={'/NylaTravels.svg'} alt='Nyla Travels' width={60} height={60} loading='eager' />
                                 <h2 className='text-xl'>
                                     <span className='text-primary'>Nyla</span><span className='text-secondary'>Travels</span>
                                 </h2>
                             </div>
+                            </Link>
 
                         </div>
                         <div >
