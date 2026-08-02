@@ -7,6 +7,7 @@ import {
     updateActivity,
     deleteActivityImage,
 } from "@/Action/activity";
+import Image from "next/image";
 
 function SectionCard({ number, title, children }) {
     return (
@@ -344,7 +345,7 @@ export default function ActivityForm({ activity = null }) {
                                 key={img.publicId}
                                 className="relative aspect-square rounded-lg overflow-hidden border border-gray-200 bg-gray-50"
                             >
-                                <img src={img.url} alt="" className="w-full h-full object-cover" />
+                                <Image src={img.url} alt={img.publicId} width={200} height={200} className="w-full h-full object-cover" />
                                 <button
                                     type="button"
                                     onClick={() => removeExistingImage(img.publicId)}
@@ -361,7 +362,7 @@ export default function ActivityForm({ activity = null }) {
                                 key={img.id}
                                 className="relative aspect-square rounded-lg overflow-hidden border-2 border-dashed border-blue-300 bg-gray-50"
                             >
-                                <img src={img.previewUrl} alt="" className="w-full h-full object-cover" />
+                                <Image src={img.previewUrl} alt="" width={200} height={200} className="w-full h-full object-cover" />
                                 {isEditMode && (
                                     <span className="absolute bottom-1 left-1 px-1.5 py-0.5 bg-blue-600 text-white text-[10px] rounded">
                                         New

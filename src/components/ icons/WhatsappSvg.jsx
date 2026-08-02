@@ -12,7 +12,9 @@ function WhatsappSvg({width=25,height=25}) {
              width={width}
              height={height}
             />
+            
     </div>
+    
   )
 }
 

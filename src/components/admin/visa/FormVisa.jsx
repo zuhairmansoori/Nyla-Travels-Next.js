@@ -1,12 +1,10 @@
 
 'use client'
 import React, { useState } from 'react'
-import { visaImage } from '@/Action/visa'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
-import { useFormStatus } from 'react-dom'
+import Image from 'next/image'
 import SubmitBtn from '@/app/admin/SubmitBtn'
  
 function FormVisa({ action, Defaultlvalue }) {
@@ -103,7 +101,7 @@ function FormVisa({ action, Defaultlvalue }) {
                 type="text"
                 name="entry"
                 id="entry"
-                placeholder="Entry"
+                placeholder="imgEntry"
                 defaultValue={Defaultlvalue?.entry}
               />
             </div>
@@ -166,9 +164,11 @@ function FormVisa({ action, Defaultlvalue }) {
                   className="max-w-xs"
                 />
                 {preview && (
-                  <img
+                  <Image
                     src={preview}
                     alt="Preview"
+                    width={80}
+                    height={80}
                     className="h-20 w-20 rounded-md object-cover border"
                   />
                 )}

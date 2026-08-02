@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 function CarForm({ action, Defaultlvalue }) {
   const [loading, setLoading] = useState(false)
@@ -192,9 +193,11 @@ function CarForm({ action, Defaultlvalue }) {
                   className="max-w-xs"
                 />
                 {preview && (
-                  <img
+                  <Image
                     src={preview}
                     alt="Preview"
+                    width={80}
+                    height={80}
                     className="h-20 w-20 rounded-md object-cover border"
                   />
                 )}

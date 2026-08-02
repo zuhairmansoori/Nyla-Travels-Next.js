@@ -15,7 +15,7 @@ function OurMission() {
         <div className='flex flex-col md:flex-row items-center  justify-around md:items-center   gap-5 pt-10 px-4 md:px-20'>
           <div className='md:w-1/2'>
             <HeadingMotion>
-               <h2 className='text-3xl  lg:text-5xl text-primary font-cinzel tracking-wider  font-bold mb-8'>Our Mission</h2>
+               <h2 className='text-3xl  lg:text-5xl text-primary font-cinzel tracking-wider text-center md:text-left font-bold mb-8'>Our Mission</h2>
             </HeadingMotion>
            
             <motion.p
@@ -32,7 +32,7 @@ function OurMission() {
             viewport={{once:true}}
          transition={{duration:1}}
              src='https://res.cloudinary.com/dkodhlcuk/image/upload/v1785331714/ChatGPT_Image_Jul_29_2026_06_57_49_PM_jlqnc6.png' alt='Our Mission' 
-             loading="eager" width={500} height={500} className='w-80 h-50 sm:w-96 sm:h-70 lg:w-114 lg:h-100  rounded-lg shadow-image' />
+             loading="eager" width={500} height={500} className='w-80 h-70 object-cover sm:w-96 sm:h-70 lg:w-114 lg:h-100  rounded-lg shadow-image' />
             {/* <Image src='/about/mission3.png' alt='Our Mission' width={250} height={300} className=' absolute  md:top-3 sm:left-10  md:-left-10 w-40 h-60 sm:w-50 sm:h-70 lg:w-60 lg:h-90 object-cover rounded-lg shadow-image' /> */}
           </div>
         </div>

@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 
 export default function FlightCard({ flight,onSelect }) {
     const [expanded, setExpanded] = useState(false)
@@ -41,9 +42,11 @@ export default function FlightCard({ flight,onSelect }) {
             {/* Airline info */}
             <div className="flex items-center gap-2 sm:w-1/5 min-w-0">
                 {firstLeg.airline_logo && (
-                    <img
+                    <Image
                         src={firstLeg.airline_logo}
                         alt={firstLeg.airline}
+                        width={28}
+                        height={28}
                         className="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0"
                     />
                 )}
@@ -124,7 +127,7 @@ export default function FlightCard({ flight,onSelect }) {
                 <div key={idx}>
                     <div className="flex items-center gap-3 py-1">
                         {leg.airline_logo && (
-                            <img src={leg.airline_logo} alt={leg.airline} className="w-5 h-5 object-contain" />
+                            <Image src={leg.airline_logo} alt={leg.airline} width={20} height={20} className="w-5 h-5 object-contain" />
                         )}
                         <div className="flex-1 flex items-center justify-between text-sm">
                             <div>
