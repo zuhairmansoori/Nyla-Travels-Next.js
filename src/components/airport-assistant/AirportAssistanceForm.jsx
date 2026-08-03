@@ -77,11 +77,13 @@ const PHONE_REGEX = /^\+[1-9]\d{7,14}$/;
  * (e.g. an app/api/airport-assistance/route.js handler in Next.js).
  */
 async function submitAirportAssistanceRequest(payload) {
+  console.log("Submitting airport assistance request:", payload);
   const response = await fetch("/api/airport-assistance", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
+  console.log("Response from server:", response);
 
   if (!response.ok) {
     const data = await response.json().catch(() => null);
@@ -200,7 +202,8 @@ export default function AirportAssistanceForm({ onSubmit = submitAirportAssistan
     setIsSubmitting(true);
 
     try {
-      await onSubmit({ ...formData, service: "Airport Assistance" });
+      const data = await onSubmit({ ...formData, service: "Airport Assistance" });
+      console.log(data);
       setSubmitStatus("success");
       setStatusMessage(
         "Request received. Our team will confirm your airport assistance shortly."
