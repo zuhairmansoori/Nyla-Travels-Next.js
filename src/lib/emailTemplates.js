@@ -48,7 +48,8 @@ export function customerConfirmationTemplate(booking) {
               <td style="padding: 20px 32px 4px 32px;">
                 <p style="margin:0; font-size:20px; font-weight:700; color:#0f172a;">Hi ${booking.fullName},</p>
                 <p style="margin:8px 0 0 0; font-size:14px; color:#64748b; line-height:1.6;">
-                  Aapki Airport Assistance booking successfully receive ho gayi hai. Neeche aapki booking ki poori details hain.
+                 Your <strong>Airport Assistance</strong> booking has been successfully received. Please find your complete booking details below.
+
                 </p>
               </td>
             </tr>
