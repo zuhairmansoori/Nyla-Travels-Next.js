@@ -40,9 +40,10 @@ export const auth = betterAuth({
                     };
                 },
                 after: async (user) => {
-                
+                       console.log('user created', user);
                     if (user.role === "user") {
                         try {
+                            console.log('sending welcome email to', user.email);
                             const { data ,error } = await resend.emails.send({
                                 from: "Nyla Travels <support@nylatravels.com>",
                                 to: user.email,
@@ -52,7 +53,7 @@ export const auth = betterAuth({
                                     loginUrl: "https://nylatravels.com",
                                 }),
                             });
-                            // console.log("Welcome email sent:", data);
+                            console.log("Welcome email sent:", data);
     
                             if (error) {
                                 console.error("Resend welcome email error:", error);
