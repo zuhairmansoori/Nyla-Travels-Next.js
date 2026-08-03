@@ -83,21 +83,21 @@ export default function BookingPage() {
     const bookingToken = flight.booking_token;
     const searchParamString = sessionStorage.getItem("searchParams");
     const params = new URLSearchParams(searchParamString);
-    console.log(bookingToken);
+    // console.log(bookingToken);
     // booking token add karo
     params.set("bookingToken", bookingToken);
     // ya agar API departureToken expect karti hai:
     // params.set("departureToken", bookingToken);
-    console.log(params.toString());
+    // console.log(params.toString());
     
     const res = await fetch(`/api/flight?${params.toString()}`)
     const data = await res.json()
-    console.log('ye booking data hai', data)
+    // console.log('ye booking data hai', data)
     
   }
   
   useEffect(() => {
-    console.log('booking api hit hua');
+    // console.log('booking api hit hua');
     fetcht()
 
   }, [])
@@ -147,7 +147,7 @@ export default function BookingPage() {
       setPassengers(initialPassengers)
       setLoaded(true)
     } catch (e) {
-      console.log('booking page load error', e)
+      // console.log('booking page load error', e)
       setError('missing')
     }
   }, [])
@@ -219,7 +219,7 @@ export default function BookingPage() {
       sessionStorage.setItem('bookingId', data.bookingId)
       router.push('/flight/confirmation')
     } catch (err) {
-      console.error('Booking submit error:', err)
+      // console.error('Booking submit error:', err)
       alert('Kuch galat ho gaya, dobara try karo')
       setSubmitting(false)
     }

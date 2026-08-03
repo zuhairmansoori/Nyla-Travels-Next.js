@@ -39,28 +39,30 @@ export const auth = betterAuth({
                         },
                     };
                 },
-            },
-            after: async (user) => {
-                if (user.role === "user") {
-                    try {
-                        const { error } = await resend.emails.send({
-                            from: "Nyla Travels <support@nylatravels.com>",
-                            to: user.email,
-                            subject: "Welcome to Nyla Travels!",
-                            react: WelcomeEmail({
-                                userFirstname: user.name ?? "Traveler",
-                                loginUrl: "https://nylatravels.com",
-                            }),
-                        });
-
-                        if (error) {
-                            console.error("Resend welcome email error:", error);
+                after: async (user) => {
+                
+                    if (user.role === "user") {
+                        try {
+                            const { data ,error } = await resend.emails.send({
+                                from: "Nyla Travels <support@nylatravels.com>",
+                                to: user.email,
+                                subject: "Welcome to Nyla Travels!",
+                                react: WelcomeEmail({
+                                    userFirstname: user.name ?? "Traveler",
+                                    loginUrl: "https://nylatravels.com",
+                                }),
+                            });
+                            // console.log("Welcome email sent:", data);
+    
+                            if (error) {
+                                console.error("Resend welcome email error:", error);
+                            }
+                        } catch (err) {
+                            // Never throw here — a failed email shouldn't block signup
+                            console.error("Failed to send welcome email:", err);
                         }
-                    } catch (err) {
-                        // Never throw here — a failed email shouldn't block signup
-                        console.error("Failed to send welcome email:", err);
                     }
-                }
+                },
             },
         },
     },

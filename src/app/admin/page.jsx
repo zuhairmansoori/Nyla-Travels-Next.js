@@ -10,7 +10,7 @@ async function page() {
         headers: await headers()
     })
     console.log('session',session);
-    if(session.user.role !== 'admin'){
+    if(!session || session.user.role !== 'admin'){
         notFound()
     }
     

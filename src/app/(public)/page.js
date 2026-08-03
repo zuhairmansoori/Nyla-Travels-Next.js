@@ -82,7 +82,7 @@ export default function Home() {
       addressCountry: "IN",
     },
   };
-console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+
 
   return (
     <>

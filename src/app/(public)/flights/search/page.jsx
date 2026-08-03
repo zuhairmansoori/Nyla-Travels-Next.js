@@ -63,7 +63,7 @@ export default function Page() {
       const max = Math.max(...allFlights.map(f => f.price || 0), 0)
       setFilters(prev => ({ ...prev, maxPrice: max }))
     } catch (error) {
-      console.log('api fetch', error)
+      // console.log('api fetch', error)
     } finally {
       setLoading(false)
     }
