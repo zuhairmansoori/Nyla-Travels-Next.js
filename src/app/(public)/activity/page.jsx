@@ -102,12 +102,12 @@ export default async function ActivitiesPage({searchParams}) {
         __html: JSON.stringify(jsonLd),
       }}
     />
-        <div className=" py-5">
-            <SearchInput pagination={"cursor"}/>
+        <div className="">
+            <SearchInput divClassName={'w-2/3 md:w-full'} pagination={"cursor"}/>
         <div className=" px-4 py-10" >
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">
+            <h1 className="text-2xl font-bold text-gray-900 text-center mb-2">
                 Explore Our Activities
-            </h2>
+            </h1>
             <p className="text-gray-500 text-center mb-10">
                 Handpicked experiences for your next trip.
             </p>

@@ -163,7 +163,6 @@ export default async function ActivityDetailPage({ params }) {
                     <p className="text-gray-500 mt-1">{destination}</p>
                 </div>
 
-                {/* Image gallery */}
                 <ActivityGallery images={images} title={title} />
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-10">
