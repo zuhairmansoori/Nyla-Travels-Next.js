@@ -27,6 +27,26 @@ export default function FlightCard({ flight,onSelect }) {
         const m = mins % 60
         return `${h}h ${m}m`
     }
+    function getFlightSellingPrice(cost) {
+  let margin = 0;
+
+  if (cost <= 20000) {
+    margin = 10;
+  } else if (cost <= 50000) {
+    margin = 7;
+  } else {
+    margin = 5;
+  }
+
+  const sellingPrice = cost + (cost * margin) / 100;
+
+  return {
+    cost,
+    margin,
+    sellingPrice: Math.round(sellingPrice),
+  };
+}
+
 
     return (
        <div className="w-full border rounded-xl p-3 sm:p-4 flex flex-col gap-3 hover:shadow-md transition-shadow bg-white">
@@ -105,7 +125,7 @@ export default function FlightCard({ flight,onSelect }) {
         {/* Price + CTA — mobile pe apni alag row, top border se separate */}
         <div className="flex items-center justify-between pt-2 border-t sm:border-t-0 sm:pt-0 sm:justify-end sm:gap-3 sm:w-1/5">
             <p className="text-lg font-bold" style={{ color: '#0d7fd6' }}>
-                ₹{flight.price?.toLocaleString('en-IN')}
+                ₹{getFlightSellingPrice(flight.price).sellingPrice?.toLocaleString('en-IN')}
             </p>
             <button
                 onClick={(e) => {
