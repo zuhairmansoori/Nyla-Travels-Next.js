@@ -90,6 +90,11 @@ export const metadata = {
       "Flights, Hotels, Visa Services & Holiday Packages",
     images: ["/og-home.jpg"],
   },
+    icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/apple-touch-icon.svg",
+  },
 
 };
 
