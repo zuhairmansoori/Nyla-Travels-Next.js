@@ -6,6 +6,26 @@ import EmptyState from "../EmptyState";
 
 function CardCards({ carsData }) {
 
+const handleWhatssapp = (itm) => {
+  const msg = `Hello, I want to book a car.
+
+🚗 Car: ${itm.CarName}
+⛽ Fuel: ${itm.FuelType}
+🚪 Doors: ${itm.Doors}
+
+💰 Per Day: ₹${itm?.Rentday?.price} (${itm?.Rentday?.Km} Km)
+💰 Per Week: ₹${itm?.Rentweek?.price} (${itm?.Rentweek?.Km} Km)
+
+💵 Deposit: ₹${itm.Deposit}
+
+Please let me know about the availability and booking process.`;
+
+  const phoneNumber = "919213909942"; // apna WhatsApp number
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(msg)}`;
+
+  window.open(whatsappUrl, "_blank");
+};
+
   if(!carsData || carsData?.length === 0){
     return (
       <>
@@ -104,7 +124,7 @@ function CardCards({ carsData }) {
                 </span>
               </div>
 
-              <button className="w-full bg-primary hover:bg-secondary text-primary-foreground font-semibold py-2.5 rounded-xl transition-colors">
+              <button onClick={ () => handleWhatssapp(itm)} className="w-full bg-primary hover:bg-secondary text-primary-foreground font-semibold py-2.5 rounded-xl transition-colors">
                 Book Now
               </button>
             </div>
