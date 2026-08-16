@@ -49,10 +49,10 @@ function VisaCard({visaDatas}) {
                    <h4 className='text-sm lg:text-[15px] text-left px-2 font-bold text-gray-300'>
               Documnet Needed :
              </h4>
-             <ul className='flex justify-center items-center flex-wrap gap-1'>
+             <ul className='flex overflow-auto scrollbar-none justify-center items-center flex-wrap gap-1'>
               {visa.documents.map((doc)=>(
-                <li key={doc} className='text-[14px] text-left lg:text-[15px]  py-2 px-3 rounded-2xl  bg-black/10 backdrop-blur-sm font-semibold  text-gray-300'>
-                  {doc}
+                <li key={doc} className='text-[14px] text-left lg:text-[15px] px-1  rounded-2xl  font-semibold  text-gray-300'>
+                 {`${doc}, `}
                 </li>
               ))}
              </ul>

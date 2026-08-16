@@ -6,6 +6,7 @@ import ActivityGallery from "@/components/ActivityGallery";
 // app/activities/[slug]/page.js
 
 import { getActivityBySlug } from "@/lib/activity";
+import ActivityCard from "@/components/activity/ActivityCard";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
@@ -77,9 +78,16 @@ export default async function ActivityDetailPage({ params }) {
     await connectDB();
     const { slug } = await params
     const activity = await activityModel.findOne({ slug: slug, isActive: true }).lean();
-
-
     const data = JSON.parse(JSON.stringify(activity));
+    const recomonded = await activityModel.find({
+        _id: { $ne: data._id },
+        isActive: true,
+        destination: data.destination
+    }).lean()
+
+
+
+
 
     const jsonLd = {
         "@context": "https://schema.org",
@@ -294,6 +302,16 @@ export default async function ActivityDetailPage({ params }) {
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div>
+                  <h3 className="text-primary text-center text-2xl font-semibold" >Recommanded</h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-10 py-10 gap-8">
+                    {recomonded.map((activity) => (
+                        <ActivityCard key={activity._id.toString()} activity={activity} />
+
+                    ))}
                 </div>
             </div>
         </>

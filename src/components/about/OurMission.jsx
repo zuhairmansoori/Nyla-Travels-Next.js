@@ -41,7 +41,7 @@ function OurMission() {
       whileInView={{opacity:1 , y:0}}
       viewport={{once:true}}
       transition={{duration:1}}
-      className='flex flex-wrap items-end justify-center pt-20 lg:py-0  md:px-30 lg:px-40 lg:justify-start gap-10 pb-10'>
+      className='flex flex-wrap items-center justify-center pt-20 lg:py-0  md:px-30 lg:px-40 lg:justify-start gap-10 pb-10'>
         <span className='text-secondary flex text-center flex-col justify-center items-center'><IoIosContact size={54} />Costumer First</span>
         <span className='text-secondary flex flex-col text-center justify-center items-center'><AiOutlineSafetyCertificate size={54} />Safe & Reliable</span>
         <span className='text-secondary flex flex-col justify-center text-center items-center'><GiWorld size={54} />Explore The World</span>

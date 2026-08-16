@@ -3,6 +3,8 @@ import connectDB from "@/lib/MongoDB";
 import ActivityCardList from './ActivityCardList';
 import { getActivities } from '@/Action/cursorPaginationAction';
 async function ActivityList({search}) {
+  console.log("sear4cg" , search);
+  
   await connectDB()
   const activities = await getActivities(null,search)
   // console.log("Search:", search);
