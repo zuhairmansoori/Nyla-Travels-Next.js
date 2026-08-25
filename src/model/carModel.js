@@ -1,55 +1,69 @@
 
 import mongoose from "mongoose";
 export const carSchema = new mongoose.Schema({
-    CarName: {
+    carName: {
         type: String,
         required: true
     },
-    Doors: {
+    doors: {
         type: Number,
         required: true
     },
-    FuelType: String,
-    Deposit: {
+    slug: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+    },
+    fuelType: String,
+    deposit: {
         type: Number,
         required: true
     },
-    Rentday: {
+    rentDay: {
         price: {
             type: Number,
             required: true
         },
-        Km: {
+        km: {
             type: Number,
             required: true
         }
     },
-    Rentweek: {
+    rentWeek: {
         price: {
             type: Number,
             required: true
         },
-        Km: {
+        km: {
             type: Number,
             required: true
         }
     },
-    Carmodel:Number,
-    Airbag:Number,
-    Transmission:String,
-    Passengers:Number,
-    imageUrl:{
-        url:{
-            type:String,
-            required:true
-        },
-        publib_id:{
-            type:String,
-            required:true
+    description: {
+        type: String,
+        required: true
+    },
+    carModel: Number,
+    airbag: Number,
+    transmission: String,
+    passengers: Number,
+    isActive:Boolean,
+    imageUrl: [
+        {
+            url: {
+                type: String,
+                required: true
+            },
+            public_id: {
+                type: String,
+                required: true
+            }
         }
-    }
-})
+    ]
+}, { timestamps: true })
 
-const carModel = mongoose.models.Cars || mongoose.model('Cars',carSchema)
+const carModel = mongoose.models.Cars || mongoose.model('Cars', carSchema)
 
 export default carModel

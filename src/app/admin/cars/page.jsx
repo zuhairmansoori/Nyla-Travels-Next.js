@@ -1,6 +1,9 @@
+
 import CarTable from '@/components/admin/car/CarTable'
+import { Button } from '@/components/ui/button'
 import connectDB from '@/lib/MongoDB'
 import carModel from '@/model/carModel'
+import Link from 'next/link'
 import React from 'react'
 
  async function page({searchParams}) {
@@ -23,6 +26,7 @@ import React from 'react'
     const plainCarData = JSON.parse(JSON.stringify(cars))
   return (
     <div className='p-5'>
+      <Button><Link href={'/admin/cars/addcar'} >Add Cars</Link></Button>
        <CarTable  cars={plainCarData} />
     </div>
   )

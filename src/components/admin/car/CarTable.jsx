@@ -4,10 +4,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { deleteCarAction } from "@/Action/cars";
+import { useState } from "react";
 
 export default function CarTable({ cars }) {
+   const [pending, setPending] = useState(false)
+   const [message,setMesaage]=useState(null)
+
+   async function handledelete(id) {
+    setPending(true)
+    setMesaage(null)
+       try {
+          const deletecar = await deleteCarAction(id)
+          if(deletecar.success) {
+            return setMesaage('car seccsessfully deleted')
+          }
+          setPending(false)
+       } catch (error) {
+           return setMesaage('somthing went wrong')
+           setPending(false)
+       } finally{
+        setPending(fasle)
+       }
+   }
+
   return (
     <div className="overflow-x-auto rounded-lg border">
+      {message && (<p className="text-red-600" >{message}</p>)}
       <table className="min-w-full text-sm">
         <thead className="bg-gray-100">
           <tr>
@@ -32,52 +54,53 @@ export default function CarTable({ cars }) {
                   <div className="flex items-center gap-3">
                     <div className="relative w-14 h-10 rounded-md overflow-hidden shrink-0 border">
                       <Image
-                        src={car?.imageUrl?.url}
-                        alt={car.CarName}
+                        src={car?.imageUrl[0]?.url}
+                        alt={car.carName}
                         fill
                         className="object-cover"
                       />
                     </div>
-                    <span className="font-medium">{car.CarName}</span>
+                    <span className="font-medium">{car.carName}</span>
                   </div>
                 </td>
 
-                <td className="p-3 whitespace-nowrap">{car.Doors}</td>
+                <td className="p-3 whitespace-nowrap">{car.doors}</td>
 
-                <td className="p-3 whitespace-nowrap">{car.FuelType}</td>
+                <td className="p-3 whitespace-nowrap">{car.fuelType}</td>
 
                 <td className="p-3">
                   <span className="font-medium">
-                    ₹{car?.Rentday?.price}
+                    ₹{car?.rentDay?.price}
                   </span>
                   <span className="block text-xs text-gray-500">
-                    {car?.Rentday?.Km}
+                    {car?.rentDay?.km}/km
                   </span>
                 </td>
 
                 <td className="p-3">
                   <span className="font-medium">
-                    ₹{car?.Rentweek?.price}
+                    ₹{car?.rentWeek?.price}
                   </span>
                   <span className="block text-xs text-gray-500">
-                    {car?.Rentweek?.Km}
+                    {car?.rentWeek?.km}/km
                   </span>
                 </td>
 
-                <td className="p-3 font-medium">₹{car.Deposit}</td>
+                <td className="p-3 font-medium">₹{car.deposit}</td>
 
                 <td className="p-3">
                   <div className="flex justify-center gap-2">
-                    <Link href={`/admin/cars/${car._id}`}>
+                    <Link href={`/admin/cars/${car.slug}/edit`}>
                       <Button size="sm">Update</Button>
                     </Link>
 
                     <Button
+                    disabled={pending}
                       size="sm"
                       variant="destructive"
-                      onClick={() => deleteCarAction(car._id)}
+                      onClick={() => handledelete(car._id)}
                     >
-                      Delete
+                    {pending ? 'Deleting..' : 'Deleted'}
                     </Button>
                   </div>
                 </td>

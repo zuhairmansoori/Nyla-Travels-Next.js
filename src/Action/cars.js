@@ -1,9 +1,10 @@
 'use server'
 import connectDB from "@/lib/MongoDB";
 import carModel from "@/model/carModel";
-import {cloud} from  '@/lib/cludinary'
+import { cloud } from '@/lib/cludinary'
 import { revalidatePath } from "next/cache";
 import { success } from "better-auth";
+import { title } from "motion/react-client";
 
 
 
@@ -14,9 +15,10 @@ async function uploadImageToCloudinary(file) {
 
   return new Promise((resolve, reject) => {
     const stream = cloud.uploader.upload_stream(
-      { folder: "Nyla-Travels/Cars",
+      {
+        folder: "Nyla-Travels/Cars",
         format: "webp",
-       }, // apna folder naam yahan set kar sakte ho
+      }, // apna folder naam yahan set kar sakte ho
       (error, result) => {
         if (error) reject(error);
         else resolve(result);
@@ -25,49 +27,61 @@ async function uploadImageToCloudinary(file) {
     stream.end(buffer);
   });
 
+};
+
+function generateSlug(title) {
+  return title.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-");
 }
-async function deleteImageFromCloudinary(publicId) {
+
+// ==================== DELETE SINGLE IMAGE (X button on existing images) ====================
+
+export async function deleteImageFromCloudinary(publicId) {
   if (!publicId) return
   try {
     await cloudinary.uploader.destroy(publicId)
   } catch (error) {
-    console.error('deleteImageFromCloudinary error:', error)
+    console.error('deleteImageFromCloudinary error:', error);
+    return { success: false, message: "Failed to delete image" };
+
   }
 }
- 
-export async function carAction(formData) {
+
+export async function craertCar(formData) {
   try {
     await connectDB() // sabse pehle DB connect karo
+  
+   
+    const carName = formData.get('carName')
+    const doors = formData.get('doors')
+    const fuelType = formData.get('fuelType')
+    const deposit = formData.get('deposit')
+    const description = formData.get('description')
 
-    const id = formData.get('id')
+    const rentDay = JSON.parse(formData.get("rentDay"))
+    const rentWeek = JSON.parse(formData.get('rentWeek'))
+    const isActive = formData.get('isActive') === 'true';
 
-    const carName = formData.get('CarName')
-    const doors = formData.get('Doors')
-    const fuelType = formData.get('FuelType')
-    const deposit = formData.get('Deposit')
+    const carModelYear = formData.get('carModel')
+    const airbag = formData.get('airbag')
+    const transmission = formData.get('transmission')
+    const passengers = formData.get('passengers')
 
-    const rentDayPrice = formData.get('RentdayPrice')
-    const rentDayKm = formData.get('RentdayKm')
+    const files = formData.getAll('images').filter((f) => f && typeof f !== "string" && f.size > 0);
 
-    const rentWeekPrice = formData.get('RentweekPrice')
-    const rentWeekKm = formData.get('RentweekKm')
-
-    const carModelYear = formData.get('Carmodel')
-    const airbag = formData.get('Airbag')
-    const transmission = formData.get('Transmission')
-    const passengers = formData.get('Passengers')
-
-    const imageFile = formData.get('image')
-
+  
     // required fields ki basic validation
     if (
       !carName ||
       !doors ||
       !deposit ||
-      !rentDayPrice ||
-      !rentDayKm ||
-      !rentWeekPrice ||
-      !rentWeekKm
+      !rentDay ||
+      !rentWeek ||
+      !carModelYear ||
+      !airbag ||
+      !transmission ||
+      !passengers ||
+      !fuelType
+
     ) {
       return {
         success: false,
@@ -75,88 +89,197 @@ export async function carAction(formData) {
       }
     }
 
-    const carData = {
-      CarName: carName,
-      Doors: Number(doors),
-      FuelType: fuelType || undefined,
-      Deposit: Number(deposit),
-      Rentday: {
-        price: Number(rentDayPrice),
-        Km: Number(rentDayKm),
-      },
-      Rentweek: {
-        price: Number(rentWeekPrice),
-        Km: Number(rentWeekKm),
-      },
-      Carmodel: carModelYear ? Number(carModelYear) : undefined,
-      Airbag: airbag ? Number(airbag) : undefined,
-      Transmission: transmission || undefined,
-      Passengers: passengers ? Number(passengers) : undefined,
+    if (files.length === 0) {
+      return { success: false, message: "Please select at least one image." };
     }
 
-    // ----- EDIT -----
-    if (id) {
-      const existingCar = await carModel.findById(id)
-      if (!existingCar) {
-        return { success: false, message: 'Car nahi mili.' }
-      }
-
-      // agar nayi image upload hui hai to purani delete karke nayi lagao
-      if (imageFile && imageFile.size > 0) {
-        await deleteImageFromCloudinary(existingCar.imageUrl?.publib_id)
-        const uploadResult = await uploadImageToCloudinary(imageFile)
-        carData.imageUrl = {
-          url: uploadResult.secure_url,
-          publib_id: uploadResult.public_id,
+    const uploadResult = await  Promise.allSettled(
+      files.map(async (file) => {
+        const result = await uploadImageToCloudinary(file)
+        return {
+          url: result.secure_url,
+          public_id: result.public_id
         }
-      }
+      })
+    );
 
-      await carModel.findByIdAndUpdate(id, carData)
-      revalidatePath('/cars') // apna actual listing page path daalo
+    
+    const successfullyUploads = uploadResult
+      .filter((r) => r.status === "fulfilled")
+      .map((r) => r.value)
 
-      return { success: true, message: 'Car successfully update ho gayi!' }
+    const failedCount = uploadResult.length - successfullyUploads.length
+    if (successfullyUploads.length === 0) {
+      return { success: false, message: "Image upload failed. Please try again." };
     }
 
-    // ----- CREATE -----
-    if (!imageFile || imageFile.size === 0) {
-      return { success: false, message: 'Car image zaroori hai.' }
-    }
+    let slug = generateSlug(carName)
+    const existing = await carModel.findOne( { slug } );
+    if(existing){
+      slug = `${slug}-${Date.now()}`;
+    };
 
-    const uploadResult = await uploadImageToCloudinary(imageFile)
-    carData.imageUrl = {
-      url: uploadResult.secure_url,
-      publib_id: uploadResult.public_id, // schema mein yehi spelling hai (publib_id)
-    }
+    const car = await carModel.create({
 
-    const newCar = new carModel(carData)
-    await newCar.save()
+      carName,
+      "carModel": carModelYear,
+      description,
+      deposit,
+      transmission,
+      airbag,
+      passengers,
+      imageUrl:successfullyUploads,
+      rentDay,
+      rentWeek,
+      fuelType,
+      slug,
+      doors,
+      isActive
 
+    })
+  
     revalidatePath('/cars') // apna actual listing page path daalo
 
-    return { success: true, message: 'Car successfully add ho gayi!' }
+       return {
+            success: true,
+            message:
+                failedCount > 0
+                    ? `Activity created, but ${failedCount} image(s) failed to upload.`
+                    : "Activity created successfully!",
+            id: car._id.toString(),
+        };
   } catch (error) {
-    console.error('carAction error:', error)
-    return {
-      success: false,
-      message: error?.message || 'Kuch galat ho gaya, dobara try karo.',
-    }
+    console.error('Create car error:', error)
+    if (error.code === 11000) {
+            return { success: false, message: "An activity with this title already exists." };
+        }
+        return { success: false, message: "Something went wrong. Please try again." };
   }
 }
 
-export async function deleteCarAction(id) {
-    try {
-        await connectDB()
-         const deleteCar = await carModel.findByIdAndDelete(id)
-         const public_id = deleteCar.imageUrl.public_id
-         const deleteImage = await deleteImageFromCloudinary(public_id)
-         return{
-            success:true,message:"car is deleted"
-         }
-    } catch (error) {
-        return {
-      success: false,
-      message: error?.message || 'Kuch galat ho gaya, dobara try karo.',
-    }
-    }
+//============================update car============================
+ export async function upadateCar(id,formData){
+  try {
+    await connectDB() // sabse pehle DB connect karo
+
+    const carName = formData.get('carName')
+    const doors = formData.get('doors')
+    const fuelType = formData.get('fuelType')
+    const deposit = formData.get('deposit')
+    const description = formData.get('description')
+
+    const rentDay = JSON.parse(formData.get("rentDay"))
+    const rentWeek = JSON.parse(formData.get('rentWeek'))
+
+    const carModelYear = formData.get('carModel')
+    const airbag = formData.get('airbag')
+    const transmission = formData.get('transmission')
+    const passengers = formData.get('passengers')
+    const isActive = formData.get('isActive') === 'true';
     
+    const existingImages = JSON.parse(formData.get("existingImages" || "[]"))
+    const newfiles = formData.getAll('images').filter((f) => f && typeof f !== "string" && f.size > 0);
+
+    // required fields ki basic validation
+    if (
+      !carName ||
+      !doors ||
+      !deposit ||
+      !rentDay ||
+      !rentWeek ||
+      !carModelYear ||
+      !airbag ||
+      !transmission ||
+      !passengers ||
+      !fuelType
+
+    ) {
+      return {
+        success: false,
+        message: 'Required fields missing hain. Sab zaroori fields bharo.',
+      }
+    }
+    let newlyUploaded = [];
+    if(newfiles.length >0) {
+      const uploadResult = await Promise.allSettled(
+        newfiles.map(async (img)=>{
+          const result = await uploadImageToCloudinary(img)
+          return { url: result.secure_url, publicId: result.public_id };
+        })
+      )
+      newlyUploaded = uploadResult
+      .filter((r)=> r.status === "fulfilled")
+      .map((r)=> r.value)
+    }
+
+    const finalImages = [...existingImages, ...newlyUploaded]
+
+        if (finalImages.length === 0) {
+            return { success: false, message: "Activity must have at least one image." };
+        }
+
+        let slug;
+        const curenrtCar = await carModel.findById(id)
+        if(curenrtCar && curenrtCar.carName !== carName){
+          slug = generateSlug(carName);
+          const clashing = await carModel.findOne({slug,_id:{$ne:id}})
+          if(clashing){
+            slug = `${slug}-${Date.now()}`
+          }
+        }
+         await carModel.findByIdAndUpdate(id,{
+
+      carName,
+      ...(slug && {slug}),
+     "carModel":carModelYear,
+      description,
+      deposit,
+      transmission,
+      airbag,
+      passengers,
+      imageUrl:finalImages,
+      rentDay,
+      rentWeek,
+      fuelType,
+      doors,
+      isActive
+
+
+    })
+  
+    revalidatePath('/cars') // apna actual listing page path daalo
+
+
+    return {success : true,message: "Car updated successfully!"}
+
+  } catch (error) {
+      console.error("Update activity error:", error);
+        return { success: false, message: "Something went wrong. Please try again." };
+  }
+ }
+
+
+export async function deleteCarAction(id) {
+  try {
+    await connectDB()
+    const deleteCar = await carModel.findByIdAndDelete(id)
+    if(!deleteCar) return {success:false, message :"Car not found"}
+    const public_id = deleteCar.imageUrl.public_id
+    if(deleteCar.imageUrl?.length > 0){
+         await Promise.allSettled(
+          deleteCar.map( (img)=> deleteImageFromCloudinary(img.public_id) )
+         ) 
+    }
+      revalidatePath('/cars')
+    return {
+      success: true, message: "car is deleted"
+    }
+  } catch (error) {
+    console.error("Delete car error", error)
+    return {
+      success: false,
+      message: error?.message || 'Failed to delete car, plese try again.',
+    }
+  }
+
 }

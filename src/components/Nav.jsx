@@ -88,7 +88,7 @@ function Nav() {
                             <div className='flex justify-center items-center'>
                                 <Image src={'/NylaTravels.svg'} alt='Nyla Travels' width={60} height={60} loading='eager' />
                                 <h2 className='text-xl'>
-                                    <span className='text-primary'>Nyla</span><span className='text-secondary'>Travels</span>
+                                    <span className='text-primary'>GoldCoast </span><span className='text-secondary'>Tourism</span>
                                 </h2>
                             </div>
                             </Link>
@@ -128,3 +128,8 @@ function Nav() {
 }
 
 export default Nav
+
+
+
+
+

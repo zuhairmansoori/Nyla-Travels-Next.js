@@ -7,11 +7,11 @@ export default async function EditActivityPage({ params }) {
     await connectDB();
   
     const {slug} =  await params
-    console.log('slug',slug);
+ 
     
 
     const activity = await activityModel.findOne({ slug: slug }).lean();
-    console.log('activity',activity);
+   
     
 
     // if (!activity) {

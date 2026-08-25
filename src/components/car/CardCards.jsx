@@ -6,6 +6,7 @@ import EmptyState from "../EmptyState";
 
 function CardCards({ carsData }) {
 
+
 const handleWhatssapp = (itm) => {
   const msg = `Hello, I want to book a car.
 
@@ -46,9 +47,11 @@ Please let me know about the availability and booking process.`;
             {/* Image */}
             <div className="relative h-56 w-full overflow-hidden">
               <Image
-                src={itm?.imageUrl?.url}
-                alt={itm.CarName}
-                fill
+                src={itm?.imageUrl[0]?.url}
+                alt={itm.carName}
+                width={550}
+                height={550}
+                loading='eager'
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
               {/* gradient so badges stay readable on any photo */}
@@ -61,26 +64,27 @@ Please let me know about the availability and booking process.`;
 
               {/* Fuel type badge, top right, like the "5D/4N" tag on the package cards */}
               <span className="absolute top-4 right-4 bg-primary/90 text-primary-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-                {itm.FuelType}
+                {itm.fuelType}
               </span>
             </div>
 
             {/* Content */}
             <div className="p-5">
               <h2 className="text-xl font-heading text-primary mb-1">
-                {itm.CarName}
+                {itm.carName}
               </h2>
 
               {/* quick specs row, mirrors the pill tags under the package images */}
               <div className="flex items-center gap-2 mb-4">
                 <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground text-xs font-medium px-3 py-1 rounded-md">
                   <DoorOpen className="w-3.5 h-3.5" />
-                  {itm.Doors} Doors
+                  {itm.doors} Doors
                 </span>
                 <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground text-xs font-medium px-3 py-1 rounded-md">
                   <Fuel className="w-3.5 h-3.5" />
-                  {itm.FuelType}
+                  {itm.fuelType}
                 </span>
+                
               </div>
 
               {/* pricing */}
@@ -90,10 +94,10 @@ Please let me know about the availability and booking process.`;
                     Per Day
                   </p>
                   <p className="text-lg font-bold text-primary leading-tight">
-                    ₹{itm?.Rentday?.price}
+                    ₹{itm?.rentDay?.price}
                   </p>
                   <p className="text-[11px] text-muted-foreground">
-                    {itm?.Rentday?.Km} Km
+                    {itm?.rentDay?.km} Km
                   </p>
                 </div>
                 <div className="bg-accent rounded-xl px-3 py-2.5">
@@ -101,10 +105,10 @@ Please let me know about the availability and booking process.`;
                     Per Week
                   </p>
                   <p className="text-lg font-bold text-primary leading-tight">
-                    ₹{itm?.Rentweek?.price}
+                    ₹{itm?.rentWeek?.price}
                   </p>
                   <p className="text-[11px] text-muted-foreground">
-                    {itm?.Rentweek?.Km} Km
+                    {itm?.rentWeek?.km} Km
                   </p>
                 </div>
               </div>
@@ -116,7 +120,7 @@ Please let me know about the availability and booking process.`;
                 </span>
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-secondary" />
-                  Deposit ₹{itm.Deposit}
+                  Deposit ₹{itm.deposit}
                 </span>
                 <span className="flex items-center gap-1">
                   <Truck className="w-3.5 h-3.5 text-secondary" />

@@ -425,7 +425,7 @@ export default function ActivityForm({ activity = null }) {
                 </label>
             </SectionCard>
 
-            <div className="flex gap-3 justify-end sticky bottom-0 bg-gradient-to-t from-gray-50 via-gray-50 pt-4 pb-1">
+            <div className="flex gap-3 justify-end sticky bottom-0 bg-linear-to-t from-gray-50 via-gray-50 pt-4 pb-1">
                 <button
                     type="button"
                     onClick={() => router.back()}
