@@ -7,7 +7,7 @@ function CarDeatls({ car }) {
             <section>
                 <div>
                     <div>
-                        <h1>{car.title}</h1>
+                        <h1>{car.carName}</h1>
                     </div>
 
 
