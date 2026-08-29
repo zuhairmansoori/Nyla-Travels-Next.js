@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Fuel, DoorOpen, ShieldCheck, Clock3, Truck } from "lucide-react";
 import EmptyState from "../EmptyState";
+import Link from "next/link";
 
 function CardCards({ carsData }) {
 
@@ -128,9 +129,10 @@ Please let me know about the availability and booking process.`;
                 </span>
               </div>
 
-              <button onClick={ () => handleWhatssapp(itm)} className="w-full bg-primary hover:bg-secondary text-primary-foreground font-semibold py-2.5 rounded-xl transition-colors">
-                Book Now
-              </button>
+             
+               <Link href={`/cars-rental/${itm.slug}`} > <button  className="w-full bg-primary hover:bg-secondary text-primary-foreground font-semibold py-2.5 rounded-xl transition-colors">
+               view details
+              </button></Link>
             </div>
           </div>
         ))}
