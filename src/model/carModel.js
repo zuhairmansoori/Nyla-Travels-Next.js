@@ -31,6 +31,19 @@ export const carSchema = new mongoose.Schema({
             required: true
         }
     },
+    categorie: {
+        type: String,
+        required: true
+    },
+    bodyType: {
+        type: String,
+        required: true
+    },
+    features: [
+        {
+            type: String,
+        }
+    ],
     rentWeek: {
         price: {
             type: Number,
@@ -49,7 +62,7 @@ export const carSchema = new mongoose.Schema({
     airbag: Number,
     transmission: String,
     passengers: Number,
-    isActive:Boolean,
+    isActive: Boolean,
     imageUrl: [
         {
             url: {

@@ -4,6 +4,28 @@ import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useRef, useState, useTransition } from "react";
 
+
+const carCategories = [
+    "Economy",
+    "Standard",
+    "Premium",
+    "Luxury",
+    "Sports",
+    "Supercar"
+];
+const bodyTypes = [
+    "Hatchback",
+    "Sedan",
+    "SUV",
+    "MUV / MPV",
+    "Coupe",
+    "Convertible",
+    "Pickup Truck",
+    "Van",
+    "Sports Car"
+];
+
+
 function SectionCard({ number, title, children }) {
     return (
         <section className="bg-white rounded-xl border border-gray-200 p-6">
@@ -31,7 +53,7 @@ function Field({ label, required, children }) {
 const inputClass =
     "w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition";
 
-function DynamicListField(item, setitem, label, placeholder) {
+function DynamicListField({item, setitem, label, placeholder}) {
     const handleChange = (index, value) => {
         const updrage = [...item]
         updrage[index] = value
@@ -49,8 +71,8 @@ function DynamicListField(item, setitem, label, placeholder) {
                 )}
 
                 {item.map((item, index) => (
-                    <div key={index}>
-                        <index
+                    <div key={index} className='flex gap-2'>
+                        <input
                             type="text"
                             value={item}
                             onChange={(e) => handleChange(index, e.target.value)}
@@ -84,7 +106,7 @@ export default function CarForm({ Cars = null }) {
     const router = useRouter()
     const fileInputref = useRef()
     const [isPending, startTransition] = useTransition()
-    
+
 
     const [formValue, setFormValue] = useState({
         carName: Cars?.carName || "",
@@ -96,8 +118,14 @@ export default function CarForm({ Cars = null }) {
         airbag: Cars?.airbag || "",
         transmission: Cars?.transmission || "",
         passengers: Cars?.passengers || "",
-        isActive: Cars?.isActive ?? true
+        isActive: Cars?.isActive ?? true,
+        categorie: Cars?.categorie || '',
+        bodyType : Cars?.bodyType || ''
     })
+
+    const [features, setFeatures] = useState(
+        Cars?.features?.length ? Cars.features : [""] 
+    )
 
     const [rentDay, setrentDay] = useState({
         price: Cars?.rentDay?.price || "",
@@ -152,12 +180,13 @@ export default function CarForm({ Cars = null }) {
         Object.entries(formValue).forEach(([key, value]) => {
             fd.append(key, value.toString());
         });
+        fd.append('features', JSON.stringify(features))
         fd.append('rentDay', JSON.stringify(rentDay));
         fd.append('rentWeek', JSON.stringify(rentWeek));
         // Nayi files — dono modes mein "images"/"newImages" — server action ke naam se sync karna hoga
         newImage.forEach((img) => fd.append(isEditMode ? "newImages" : "images", img.file));
-      
-        
+
+
         // Sirf edit mode mein existing images bhejni hain
         if (isEditMode) {
             fd.append("existingImages", JSON.stringify(existingImage))
@@ -226,7 +255,7 @@ export default function CarForm({ Cars = null }) {
                             />
                         </Field>
                     </div>
-                    <div className='grid grid-cols-4 gap-4'>
+                    <div className='grid grid-cols-3 gap-4'>
                         <Field label={'Airbag'}>
                             <input
                                 type='number'
@@ -256,13 +285,32 @@ export default function CarForm({ Cars = null }) {
                                 <option value="manual">Manual</option>
                             </select>
                         </Field>
-                        <Field label={'Fuel Type'}>
-                            <select name="fuelType" value={formValue.fuelType} required onChange={handleChange} className={inputClass}>   
+                       
+                    </div>
+                    <div className='grid grid-cols-3 gap-4'>
+                         <Field label={'Fuel Type'}>
+                            <select name="fuelType" value={formValue.fuelType} required onChange={handleChange} className={inputClass}>
                                 <option value="" disabled>Select Fuel</option>
                                 <option value="petrol">Petrol</option>
                                 <option value="diesel">Diesel</option>
                                 <option value="ev">EV</option>
                             </select>
+                        </Field>
+                        <Field label={'Categorie'}>
+                           <select name="categorie" value={formValue.categorie} required onChange={handleChange} className={inputClass}>
+                            <option value="" disabled> Select Categorie</option>
+                            {carCategories.map((cat)=>(
+                                <option key={cat} value={cat} >{cat}</option>
+                            ))}
+                           </select>
+                        </Field>
+                          <Field label={'Body Type'}>
+                           <select name="bodyType" value={formValue.bodyType} required onChange={handleChange} className={inputClass}>
+                            <option value="" disabled> Select body type</option>
+                            {bodyTypes.map((body)=>(
+                                <option key={body} value={body} >{body}</option>
+                            ))}
+                           </select>
                         </Field>
                     </div>
                     <Field label={'Description'}>
@@ -411,7 +459,15 @@ export default function CarForm({ Cars = null }) {
                         </div>
                     )}
                 </SectionCard>
-                <SectionCard number='4' title='Status' >
+                <SectionCard number={'4'} title='Features'>
+                   <DynamicListField
+                   item={features}
+                   setitem={setFeatures}
+                   label={'Features'}
+                   placeholder={'e.g. Sunroof '}
+                   />
+                </SectionCard>
+                <SectionCard number='5' title='Status' >
                     <label className='flex items-center justify-between cursor-pointer'>
                         <div>
                             <p className='text-sm font-medium text-gray-500'>

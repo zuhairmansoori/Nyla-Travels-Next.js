@@ -4,6 +4,8 @@ import Image from 'next/image'
 import React from 'react'
 import ActivityGallery from '../ActivityGallery'
 import { Button } from '@/components/ui/button'
+import { p } from 'motion/react-client'
+import { Ultra } from 'next/font/google'
 
 function CarDeatls({ car }) {
     const handleWhatssapp = () => {
@@ -34,7 +36,10 @@ Please let me know about the availability and booking process.`;
             <section>
                 <div>
                     <div className='mb-10'>
-                        <h1 className='text-3xl font-bold  text-gray-900"'>{car.carName}</h1>
+                         <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium mb-3">
+                        {car.categorie}
+                    </span>
+                        <h1 className='text-3xl font-bold  text-secondary'>{car.carName}</h1>
                     </div>
                    
                     <div>
@@ -73,9 +78,27 @@ Please let me know about the availability and booking process.`;
                                         <h3>Passenger</h3>
                                         <p className='text-gray-600'>{car.passengers}</p>
                                     </div>
+                                     <div className={classNameDetails}>
+                                        <h3>Body Type</h3>
+                                        <p className='text-gray-600'>{car.bodyType}</p>
+                                    </div>
                                 </div>
                             </section>
-                            
+                            <section className=' mt-10  rounded-2xl  p-10 bg-white'>
+                                  <h2 className='pb-5 font-bold'>Car Features</h2>
+                                <ul grid gap-4>
+                                     {car?.features?.map((fet)=>(
+                                     <li
+                                            key={fet}
+                                            className="flex items-start gap-5 text-[18px] text-gray-700"
+                                        >
+                                            <span className="mt-0.5 text-blue-600">✦</span>
+                                            {fet}
+                                        </li>
+                                ))}
+                                </ul>
+                               
+                            </section>
                           
                         </div>
                         <section className='col-span-1'>
@@ -112,7 +135,7 @@ Please let me know about the availability and booking process.`;
                                     </div>
                                     <div className='flex flex-col justify-between items-center gap-5 '>
                                         <Button className={'w-full text-xl py-6'}>Book Now</Button>
-                                        <Button onClick={handleWhatssapp} className={'w-full bg-green-500'}>Enquiry on Whatsapp</Button>
+                                        <Button onClick={handleWhatssapp} className={'w-full text-xl py-6 bg-green-500'}>Enquiry on Whatsapp</Button>
                                     </div>
                                 </div>
                                 <div className='bg-white p-5 rounded-xl my-5'>

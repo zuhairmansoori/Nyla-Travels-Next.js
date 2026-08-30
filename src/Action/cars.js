@@ -49,8 +49,8 @@ export async function deleteImageFromCloudinary(publicId) {
 export async function craertCar(formData) {
   try {
     await connectDB() // sabse pehle DB connect karo
-  
-   
+
+
     const carName = formData.get('carName')
     const doors = formData.get('doors')
     const fuelType = formData.get('fuelType')
@@ -60,15 +60,18 @@ export async function craertCar(formData) {
     const rentDay = JSON.parse(formData.get("rentDay"))
     const rentWeek = JSON.parse(formData.get('rentWeek'))
     const isActive = formData.get('isActive') === 'true';
-
+    const categorie = formData.get('categorie');
+    const bodyType = formData.get('bodyType') 
     const carModelYear = formData.get('carModel')
     const airbag = formData.get('airbag')
     const transmission = formData.get('transmission')
     const passengers = formData.get('passengers')
 
+    const features = JSON.parse(formData.get('features'))
+
     const files = formData.getAll('images').filter((f) => f && typeof f !== "string" && f.size > 0);
 
-  
+
     // required fields ki basic validation
     if (
       !carName ||
@@ -93,7 +96,7 @@ export async function craertCar(formData) {
       return { success: false, message: "Please select at least one image." };
     }
 
-    const uploadResult = await  Promise.allSettled(
+    const uploadResult = await Promise.allSettled(
       files.map(async (file) => {
         const result = await uploadImageToCloudinary(file)
         return {
@@ -103,7 +106,7 @@ export async function craertCar(formData) {
       })
     );
 
-    
+
     const successfullyUploads = uploadResult
       .filter((r) => r.status === "fulfilled")
       .map((r) => r.value)
@@ -114,8 +117,8 @@ export async function craertCar(formData) {
     }
 
     let slug = generateSlug(carName)
-    const existing = await carModel.findOne( { slug } );
-    if(existing){
+    const existing = await carModel.findOne({ slug });
+    if (existing) {
       slug = `${slug}-${Date.now()}`;
     };
 
@@ -125,10 +128,13 @@ export async function craertCar(formData) {
       "carModel": carModelYear,
       description,
       deposit,
+      features,
+      bodyType,
+      categorie,
       transmission,
       airbag,
       passengers,
-      imageUrl:successfullyUploads,
+      imageUrl: successfullyUploads,
       rentDay,
       rentWeek,
       fuelType,
@@ -137,28 +143,28 @@ export async function craertCar(formData) {
       isActive
 
     })
-  
+
     revalidatePath('/cars') // apna actual listing page path daalo
 
-       return {
-            success: true,
-            message:
-                failedCount > 0
-                    ? `Activity created, but ${failedCount} image(s) failed to upload.`
-                    : "Activity created successfully!",
-            id: car._id.toString(),
-        };
+    return {
+      success: true,
+      message:
+        failedCount > 0
+          ? `Activity created, but ${failedCount} image(s) failed to upload.`
+          : "Activity created successfully!",
+      id: car._id.toString(),
+    };
   } catch (error) {
     console.error('Create car error:', error)
     if (error.code === 11000) {
-            return { success: false, message: "An activity with this title already exists." };
-        }
-        return { success: false, message: "Something went wrong. Please try again." };
+      return { success: false, message: "An activity with this title already exists." };
+    }
+    return { success: false, message: "Something went wrong. Please try again." };
   }
 }
 
 //============================update car============================
- export async function upadateCar(id,formData){
+export async function upadateCar(id, formData) {
   try {
     await connectDB() // sabse pehle DB connect karo
 
@@ -167,16 +173,16 @@ export async function craertCar(formData) {
     const fuelType = formData.get('fuelType')
     const deposit = formData.get('deposit')
     const description = formData.get('description')
-
     const rentDay = JSON.parse(formData.get("rentDay"))
     const rentWeek = JSON.parse(formData.get('rentWeek'))
-
+    const categorie = formData.get('categorie');
+    const bodyType = formData.get('bodyType')
     const carModelYear = formData.get('carModel')
     const airbag = formData.get('airbag')
     const transmission = formData.get('transmission')
     const passengers = formData.get('passengers')
     const isActive = formData.get('isActive') === 'true';
-    
+    const features = JSON.parse(formData.get('features'))
     const existingImages = JSON.parse(formData.get("existingImages" || "[]"))
     const newfiles = formData.getAll('images').filter((f) => f && typeof f !== "string" && f.size > 0);
 
@@ -200,77 +206,77 @@ export async function craertCar(formData) {
       }
     }
     let newlyUploaded = [];
-    if(newfiles.length >0) {
+    if (newfiles.length > 0) {
       const uploadResult = await Promise.allSettled(
-        newfiles.map(async (img)=>{
+        newfiles.map(async (img) => {
           const result = await uploadImageToCloudinary(img)
           return { url: result.secure_url, publicId: result.public_id };
         })
       )
       newlyUploaded = uploadResult
-      .filter((r)=> r.status === "fulfilled")
-      .map((r)=> r.value)
+        .filter((r) => r.status === "fulfilled")
+        .map((r) => r.value)
     }
 
     const finalImages = [...existingImages, ...newlyUploaded]
 
-        if (finalImages.length === 0) {
-            return { success: false, message: "Activity must have at least one image." };
-        }
+    if (finalImages.length === 0) {
+      return { success: false, message: "Activity must have at least one image." };
+    }
 
-        let slug;
-        const curenrtCar = await carModel.findById(id)
-        if(curenrtCar && curenrtCar.carName !== carName){
-          slug = generateSlug(carName);
-          const clashing = await carModel.findOne({slug,_id:{$ne:id}})
-          if(clashing){
-            slug = `${slug}-${Date.now()}`
-          }
-        }
-         await carModel.findByIdAndUpdate(id,{
-
+    let slug;
+    const curenrtCar = await carModel.findById(id)
+    if (curenrtCar && curenrtCar.carName !== carName) {
+      slug = generateSlug(carName);
+      const clashing = await carModel.findOne({ slug, _id: { $ne: id } })
+      if (clashing) {
+        slug = `${slug}-${Date.now()}`
+      }
+    }
+    await carModel.findByIdAndUpdate(id, {
       carName,
-      ...(slug && {slug}),
-     "carModel":carModelYear,
+      ...(slug && { slug }),
+      "carModel": carModelYear,
       description,
       deposit,
       transmission,
       airbag,
       passengers,
-      imageUrl:finalImages,
+      imageUrl: finalImages,
       rentDay,
       rentWeek,
       fuelType,
       doors,
-      isActive
-
-
+      isActive,
+      features,
+      categorie,
+      bodyType
     })
-  
+
     revalidatePath('/cars') // apna actual listing page path daalo
 
 
-    return {success : true,message: "Car updated successfully!"}
+    return { success: true, message: "Car updated successfully!" }
 
   } catch (error) {
-      console.error("Update activity error:", error);
-        return { success: false, message: "Something went wrong. Please try again." };
+    console.error("Update activity error:", error);
+    return { success: false, message: "Something went wrong. Please try again." };
   }
- }
+}
 
 
 export async function deleteCarAction(id) {
   try {
     await connectDB()
     const deleteCar = await carModel.findByIdAndDelete(id)
-    if(!deleteCar) return {success:false, message :"Car not found"}
+    if (!deleteCar) return { success: false, message: "Car not found" }
     const public_id = deleteCar.imageUrl.public_id
-    if(deleteCar.imageUrl?.length > 0){
-         await Promise.allSettled(
-          deleteCar.map( (img)=> deleteImageFromCloudinary(img.public_id) )
-         ) 
+    if (deleteCar.imageUrl?.length > 0) {
+      await Promise.allSettled(
+        deleteCar.map((img) => deleteImageFromCloudinary(img.public_id))
+      )
     }
-      revalidatePath('/cars')
+    revalidatePath('/cars')
     return {
       success: true, message: "car is deleted"
     }
