@@ -5,6 +5,7 @@ import SearchInput from '../admin/SearchInput'
 import CardCards from './CardCards'
 
 async function CarList({params}) {
+  await connectDB()
     const search = params.search || ''
     const page = Number(params.page) || 1
     const limit = 10
