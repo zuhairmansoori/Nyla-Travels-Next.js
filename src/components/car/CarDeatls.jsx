@@ -45,14 +45,14 @@ Please let me know about the availability and booking process.`;
                     <div>
                         <ActivityGallery images={car.imageUrl} title={car.carName}/>
                     </div>
-                    <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 mt-10'>
+                    <div className='grid grid-cols-1 lg:grid-cols-3 lg:gap-10 mt-10'>
                         <div className='col-span-2 space-y-10'>
                             <section>
                                   <h2 className='font-bold'>Overview</h2>
-                                <p className="text-gray-600 leading-relaxed whitespace-pre-line">{car.description}</p>
+                                <p className="text-gray-600 text-[17px] leading-relaxed whitespace-pre-line">{car.description}</p>
                             </section>
-                            <section className=' mt-10  rounded-2xl  p-10 bg-white'>
-                            <h2 className='pb-5 font-bold'>Car Details</h2>
+                            <section className=' mt-10 shadow-2xs shadow-gray-300  rounded-2xl  p-10 bg-white'>
+                            <h2 className='pb-5 text-2xl font-bold'>Car Details</h2>
                                 <div className='grid gap-5'>
                                     <div className='flex justify-between items-center border-b border-gray-600 pb-4'>
                                         <h3>Car Model</h3>
@@ -85,12 +85,12 @@ Please let me know about the availability and booking process.`;
                                 </div>
                             </section>
                             <section className=' mt-10  rounded-2xl  p-10 bg-white'>
-                                  <h2 className='pb-5 font-bold'>Car Features</h2>
-                                <ul grid gap-4>
+                                  <h2 className='pb-5 text-2xl font-bold'>Car Features</h2>
+                                <ul className='grid gap-4'>
                                      {car?.features?.map((fet)=>(
                                      <li
                                             key={fet}
-                                            className="flex items-start gap-5 text-[18px] text-gray-700"
+                                            className="flex items-start gap-5 text-[17px] text-gray-700"
                                         >
                                             <span className="mt-0.5 text-blue-600">✦</span>
                                             {fet}
@@ -102,7 +102,7 @@ Please let me know about the availability and booking process.`;
                           
                         </div>
                         <section className='col-span-1'>
-                                <div className='bg-white p-5 rounded-xl sticky -top-30'>
+                                <div className='bg-white w-full p-5 shadow-2xs shadow-gray-300 rounded-xl sticky -top-60  lg:-top-30'>
                                     <div>
                                         <h3 className='truncate text-xl text-primary font-semibold'>Pricing</h3>
                                     </div>
@@ -138,7 +138,7 @@ Please let me know about the availability and booking process.`;
                                         <Button onClick={handleWhatssapp} className={'w-full text-xl py-6 bg-green-500'}>Enquiry on Whatsapp</Button>
                                     </div>
                                 </div>
-                                <div className='bg-white p-5 rounded-xl my-5'>
+                                <div className='bg-white p-5 shadow-2xs shadow-gray-300 rounded-xl my-5'>
                                     <div>
                                          <h3 className='truncate text-xl text-primary font-semibold'>Advance payment</h3>
                                          <p className='text-gray-800 text-sm'>(Refundable based upon damage/ lost)</p>
@@ -149,7 +149,7 @@ Please let me know about the availability and booking process.`;
                                     </div>
                                    
                                 </div>
-                                <div className='bg-white p-5 rounded-xl my-5'>
+                                <div className='bg-white p-5 shadow-2xs shadow-gray-300 rounded-xl my-5'>
                                     <div>
                                          <h3 className='truncate text-xl text-primary font-semibold'>Additional charges</h3>
                                          <p className='text-gray-800 text-sm'>(Will be charged on car Return)</p>
@@ -167,7 +167,7 @@ Please let me know about the availability and booking process.`;
                                         <p className='text-secondary'>based on damage/lost</p>
                                     </div>
                                 </div>
-                                 <div className='bg-white p-5 rounded-xl my-5'>
+                                 <div className='bg-white shadow-2xs shadow-gray-300 p-5 rounded-xl my-5'>
                                     <div>
                                          <h3 className='truncate text-xl text-primary font-semibold'>Requirements</h3>
                                     </div>
