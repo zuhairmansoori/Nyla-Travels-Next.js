@@ -65,7 +65,7 @@ Please let me know about the availability and booking process.`;
 
               {/* Fuel type badge, top right, like the "5D/4N" tag on the package cards */}
               <span className="absolute top-4 right-4 bg-primary/90 text-primary-foreground text-xs font-semibold px-3 py-1.5 rounded-full">
-                {itm.fuelType}
+                {itm.fuelType.toUpperCase()}
               </span>
             </div>
 
@@ -131,7 +131,7 @@ Please let me know about the availability and booking process.`;
 
              
                <Link href={`/cars-rental/${itm.slug}`} > <button  className="w-full bg-primary hover:bg-secondary text-primary-foreground font-semibold py-2.5 rounded-xl transition-colors">
-               view details
+               View details
               </button></Link>
             </div>
           </div>

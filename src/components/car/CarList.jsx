@@ -11,7 +11,7 @@ async function CarList({params}) {
     const limit = 10
     const skip = (page - 1) * limit
     const query =  search?{
-        CarName:{
+        carName:{
             $regex:search,
             $options:'i'
         }

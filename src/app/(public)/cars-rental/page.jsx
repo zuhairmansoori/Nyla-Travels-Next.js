@@ -106,7 +106,7 @@ async function page({ searchParams }) {
         }}
       />
       <SearchInput divClassName={'w-2/3 md:w-full'}/>
-      <Suspense fallback={<SkeletonLoader gridClassName={'lg:grid-cols-3 max-w-7xl m-auto'} count={'12'} />}  >
+      <Suspense fallback={<SkeletonLoader gridClassName={'lg:grid-cols-3 max-w-7xl pt-10 m-auto'} count={'12'} />}  >
         <CarList params={params} />
       </Suspense>
 
