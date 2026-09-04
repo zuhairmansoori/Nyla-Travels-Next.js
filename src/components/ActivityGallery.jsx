@@ -32,7 +32,7 @@ export default function ActivityGallery({ images, title }) {
                 <div className="overflow-x-auto pb-1 no-scrollbar">
                     <ul className="flex gap-3 w-max scroll-smooth list-none">
                         {images.map((img, i) => (
-                            <li key={img.publicId} className="shrink-0">
+                            <li key={img.public_id} className="shrink-0">
                                 <button
                                     onClick={() => setActiveIndex(i)}
                                     className={`block w-20 h-20 rounded-lg overflow-hidden border-2 transition ${

@@ -14,13 +14,14 @@ async function page({params}) {
       isActive:true,
       categorie: data.categorie
     })
+    const recomandedData = JSON.parse(JSON.stringify(recomanded))
 
   return (
     <div>
       <CarDeatls car={data} />
       <div>
         <h2 className='text-center text-2xl'>Similar Cars</h2>
-        <CardCards carsData={recomanded} />
+        <CardCards carsData={recomandedData} />
       </div>
     </div>
   )

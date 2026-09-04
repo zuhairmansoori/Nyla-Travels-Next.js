@@ -7,10 +7,7 @@ import React from 'react'
 async function page({params}) {
     await connectDB()
     const {slug} = await params
-    
-    const data = await carModel.findOne({slug:slug}).lean()
-
-    
+    const data = await carModel.findOne({slug:slug})
     const cardata = JSON.parse(JSON.stringify(data))
   
     

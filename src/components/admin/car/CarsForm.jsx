@@ -106,6 +106,7 @@ export default function CarForm({ Cars = null }) {
     const router = useRouter()
     const fileInputref = useRef()
     const [isPending, startTransition] = useTransition()
+    
 
 
     const [formValue, setFormValue] = useState({
@@ -152,15 +153,27 @@ export default function CarForm({ Cars = null }) {
             file,
             previewUrl: URL.createObjectURL(file)
         }));
+       
 
         setNewImage((prev) => [...prev, ...entries]);
+     
         if (fileInputref.current) fileInputref.current.value = ""
     }
+      
+   
 
-    const removeExistingImage = async (publicId) => {
-        setexistingImage((prev) => prev.filter((img) => img.publicId !== publicId))
-        await deleteImageFromCloudinary(publicId).catch(() => { })
+  const removeExistingImage = async (publicId) => {
+  
+    try {
+        await deleteImageFromCloudinary(publicId)
+
+        setexistingImage((prev) =>
+            prev.filter((img) => img.public_id !== publicId)
+        )
+    } catch (error) {
+        console.error("Failed to delete image:", error)
     }
+}
 
     const removeNewImage = (id) => {
         setNewImage((prev) => {
@@ -509,6 +522,6 @@ export default function CarForm({ Cars = null }) {
             </form>
         </>
     )
-
-
+    
 }
+

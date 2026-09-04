@@ -184,8 +184,7 @@ export async function upadateCar(id, formData) {
     const isActive = formData.get('isActive') === 'true';
     const features = JSON.parse(formData.get('features'))
     const existingImages = JSON.parse(formData.get("existingImages" || "[]"))
-    const newfiles = formData.getAll('images').filter((f) => f && typeof f !== "string" && f.size > 0);
-
+    const newfiles = formData.getAll('newImages').filter((f) => f && typeof f !== "string" && f.size > 0);
     // required fields ki basic validation
     if (
       !carName ||
@@ -217,11 +216,11 @@ export async function upadateCar(id, formData) {
         .filter((r) => r.status === "fulfilled")
         .map((r) => r.value)
     }
-
+   
     const finalImages = [...existingImages, ...newlyUploaded]
-
+    
     if (finalImages.length === 0) {
-      return { success: false, message: "Activity must have at least one image." };
+      return { success: false, message: "Car must have at least one image." };
     }
 
     let slug;

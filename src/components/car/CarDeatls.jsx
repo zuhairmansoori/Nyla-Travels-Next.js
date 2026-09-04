@@ -1,11 +1,9 @@
 'use client'
-import Image from 'next/image'
 
 import React from 'react'
 import ActivityGallery from '../ActivityGallery'
 import { Button } from '@/components/ui/button'
-import { p } from 'motion/react-client'
-import { Ultra } from 'next/font/google'
+
 
 function CarDeatls({ car }) {
     const handleWhatssapp = () => {
