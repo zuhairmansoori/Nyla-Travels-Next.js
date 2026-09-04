@@ -165,11 +165,10 @@ export default function CarForm({ Cars = null }) {
   const removeExistingImage = async (publicId) => {
   
     try {
-        await deleteImageFromCloudinary(publicId)
-
         setexistingImage((prev) =>
             prev.filter((img) => img.public_id !== publicId)
         )
+         await deleteImageFromCloudinary(publicId)
     } catch (error) {
         console.error("Failed to delete image:", error)
     }
@@ -434,7 +433,7 @@ export default function CarForm({ Cars = null }) {
                                     />
                                     <button
                                         type='button'
-                                        onClick={() => removeExistingImage(img.publicId)}
+                                        onClick={() => removeExistingImage(img.public_id)}
                                         className='absolute top-1.5 right-1.5 w-5 h-5 flex items-center justify-center rounded-full bg-black/70 text-white text-xs hover:bg-red-600 transition'
                                         aria-label='Remove image'
                                     >
