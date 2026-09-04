@@ -3,8 +3,7 @@ import connectDB from "@/lib/MongoDB";
 import carModel from "@/model/carModel";
 import { cloud } from '@/lib/cludinary'
 import { revalidatePath } from "next/cache";
-import { success } from "better-auth";
-import { title } from "motion/react-client";
+
 
 
 
@@ -49,6 +48,7 @@ export async function deleteImageFromCloudinary(publicId) {
 export async function craertCar(formData) {
   try {
     await connectDB() // sabse pehle DB connect karo
+
 
 
     const carName = formData.get('carName')
@@ -105,6 +105,7 @@ export async function craertCar(formData) {
         }
       })
     );
+   
 
 
     const successfullyUploads = uploadResult
@@ -209,7 +210,7 @@ export async function upadateCar(id, formData) {
       const uploadResult = await Promise.allSettled(
         newfiles.map(async (img) => {
           const result = await uploadImageToCloudinary(img)
-          return { url: result.secure_url, publicId: result.public_id };
+          return { url: result.secure_url, public_id: result.public_id };
         })
       )
       newlyUploaded = uploadResult
