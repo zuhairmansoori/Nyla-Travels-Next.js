@@ -113,7 +113,7 @@ function CarBooking({ car, bookingForm }) {
     }
 
   return (
-    <div className=' h-full  bg-transparent backdrop-blur-sm   p-4'>
+    <div className='  bg-transparent backdrop-blur-sm mb-10  p-4'>
            <Script
                 src="https://checkout.razorpay.com/v1/checkout.js"
                 strategy="afterInteractive"
@@ -212,7 +212,7 @@ function CarBooking({ car, bookingForm }) {
             
             </div>
 
-            <Button disabled={isPanding} type="submit" className={'sm:text-2xl py-6 px-8 '} >{isPanding ? 'Booking...' : 'Book Now'}</Button>
+            <Button disabled={isPanding} type="submit" className={'sm:text-2xl py-6 px-8 mt-5'} >{isPanding ? 'Booking...' : 'Book Now'}</Button>
           </div>
         </form>
       </div>

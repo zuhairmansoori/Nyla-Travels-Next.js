@@ -109,15 +109,18 @@ function ActivityBooking({ activity, bookingForm }) {
           setIsPanding(false)
         }
       }
+      setIsPanding(false)
+      setError(data.message)
 
 
     } catch (error) {
+      setIsPanding(false)
       console.error('Error creating booking:', error);
     }
   }
 
   return (
-    <div className=' h-full  bg-transparent backdrop-blur-sm   p-4'>
+    <div className='   bg-transparent backdrop-blur-sm  mb-10  p-4'>
       <Script
         src="https://checkout.razorpay.com/v1/checkout.js"
         strategy="afterInteractive"
@@ -171,7 +174,7 @@ function ActivityBooking({ activity, bookingForm }) {
               </Field>
             </div>
           </div>
-          <div className='flex justify-between items-center gap-10'>
+          <div className='flex flex-col md:flex-row justify-between items-center gap-10'>
              <div className='flex text-secondary font-bold justify-center items-center gap-12' >
                 <div
                   onClick={() =>
@@ -228,7 +231,7 @@ function ActivityBooking({ activity, bookingForm }) {
           <div className='text-center mt-3'>
           
 
-            <Button disabled={isPanding} type="submit" className={'sm:text-2xl py-6 px-8 '} >{isPanding ? 'Booking...' : 'Book Now'}</Button>
+            <Button disabled={isPanding} type="submit" className={'sm:text-2xl py-6 px-8 mt-5 '} >{isPanding ? 'Booking...' : 'Book Now'}</Button>
           </div>
         </form>
       </div>

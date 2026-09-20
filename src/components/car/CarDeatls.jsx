@@ -97,7 +97,7 @@ Please let me know about the availability and booking process.`;
             "availability": car.isActive ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
         }
     }
-    console.log("booking form",bookForm)
+   
     //  if(bookForm){
     //     return (
     //         <>
