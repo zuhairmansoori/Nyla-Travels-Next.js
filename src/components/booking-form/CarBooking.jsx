@@ -1,0 +1,223 @@
+'use client'
+import React, { useState } from 'react'
+import { clientAuth } from '@/lib/client-auth'
+import { Button } from '../ui/button';
+import Script from 'next/script';
+import optionHandler from '@/helper/razorpatoption';
+import { useRouter } from 'next/navigation';
+
+
+const today = new Date().toISOString().split("T")[0];
+const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0]
+
+
+function Field({ label, required, children }) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      {children}
+    </div>
+  );
+}
+
+
+function CarBooking({ car, bookingForm }) {
+  const router = useRouter()
+  const userSession = clientAuth.useSession()
+  const [form, setForm] = useState(
+    {
+      name: userSession?.data?.user?.name || '',
+      email: userSession?.data?.user?.email || '',
+      phone: '',
+      address: '',
+      pickupDate: today,
+      returnDate: tomorrow,
+      type: ''
+    }
+  )
+  const [error, setError] = useState("")
+  const [isPanding, setIsPanding] = useState(false)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+  const inputClass =
+    "w-full rounded-lg border border-gray-300 px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 focus:outline-none transition";
+
+    const handleBookNow=async (e)=>{
+       e.preventDefault();
+       setIsPanding(true)
+       if(!form.name){
+        setError("Name is not define")
+        return
+       }
+       if(!form.address){
+        setError("fill address")
+          return
+       }
+       if(!form.phone){
+        setError("Please enter phone number")
+        return
+       }
+       if(!form.email || !form.pickupDate || !form.returnDate || !form.type){
+        setError("be careful you enter all details")
+       }
+     
+       if(car[form.type].price + car[form.type].price *18/100 >= 500000){
+           const wamsg = `Hello! I'm interested in ${car}. Could you please provide me with more information?`
+        window.open(`https://wa.me/9213909942?text=${encodeURIComponent(wamsg)}`,'_blank')
+        return
+    }
+
+      try {
+        const res = await fetch('/api/booking/create-booking',{
+          method:"POST",
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+            form,
+            bookingType:'car',
+            itemId:car._id
+          }),
+        });
+        const data = await res.json();
+        if(res.ok){
+           // Booking created successfully, now initiate Razorpay payment
+           const orderRes = await fetch('/api/payment/create-order',{
+            method:'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            body: JSON.stringify({bookingId:data.booking._id})
+           });
+           const order = await orderRes.json();
+           if(orderRes.ok){
+             // Open Razorpay payment modal
+             optionHandler(order.order,data.booking._id,router);
+           }else{
+            console.error('Error creating order',order.message)
+           }
+        }
+        setIsPanding(false)
+
+        
+      } catch (error) {
+          console.error('Error creating booking:', error);
+          setIsPanding(false)
+          return
+      }
+    }
+
+  return (
+    <div className=' h-full  bg-transparent backdrop-blur-sm   p-4'>
+           <Script
+                src="https://checkout.razorpay.com/v1/checkout.js"
+                strategy="afterInteractive"
+            />
+
+      <div className='bg-white w-full sm:w-2/3 lg:w-2/4 p-5 rounded-2xl m-auto'>
+        <div className='flex justify-between items-center'>
+          <div className='text-secondary text-xl sm:text-3xl  text-center'>Booking Form</div>
+          <span onClick={() => bookingForm(false)} className='p-2 px-4 rounded-full  cursor-pointer text-red-700 font-bold text-xl' >x</span>
+        </div>
+
+
+        <h2 className='p-4 pb-10 text-xl lg:text-2xl'>{car.carName}</h2>
+        <form onSubmit={handleBookNow}>
+          {error && <p className='text-center pb-4 text-red-700 text-xl'>{error}</p>}
+          <div className='grid sm:grid-cols-3 gap-3'>
+            <div>
+              <Field label={'Name'} required>
+                <input className={inputClass}required type="text" name='name' value={form.name} onChange={handleChange} />
+              </Field>
+
+            </div>
+            <div>
+              <Field label={'Email'} required>
+                <input type="email" required name="email" value={form.email} onChange={handleChange} className={inputClass} />
+              </Field>
+            </div>
+            <div>
+              <Field label={'Number'} required>
+                <input type="tel" required name="phone" value={form.phone} onChange={handleChange} className={inputClass} />
+              </Field>
+            </div>
+          </div>
+
+          <div className='grid sm:grid-cols-3 gap-3'>
+            <div>
+              <Field label={'Pick Up Date'} required>
+                <input type="date"
+                  min={today}
+                  required
+                  name="pickupDate" value={form.pickupDate} onChange={handleChange} className={inputClass} />
+              </Field>
+            </div>
+            <div>
+              <Field label={'Return Date'} required>
+                <input type="date"
+                  min={tomorrow}
+                  required
+                  name="returnDate" onChange={handleChange} value={form.returnDate} className={inputClass} />
+              </Field>
+            </div>
+            <div>
+              <Field label={'Type'} required>
+                <select name="type"  value={form.type} required onChange={handleChange} className={inputClass}>
+                  <option value="" disabled>Select Type</option>
+                  <option value="rentDay">Rent per day</option>
+                  <option value="rentWeek">Rent per week</option>
+                </select>
+              </Field>
+            </div>
+          </div>
+          <div>
+            <div>
+              <Field label={'Address'} required>
+                <textarea required name="address" value={form.address} onChange={handleChange} className={`${inputClass} resize-none`} placeholder='Full address' rows="6"></textarea>
+              </Field>
+            </div>
+          </div>
+          <div className='flex gap-10 flex-col sm:flex-row p-4 justify-between items-center'>
+            <div className='text-center bg-gray-200 shadow-2xs border border-secondary rounded-3xl p-5'>
+              <div className='flex justify-between gap-5 items-center'>
+                <p>Subtoal :</p>
+               
+                   {form.type ? <>
+                <p className='text-sm text-secondary'>{car[form.type].price} INR/{form.type === 'rentWeek' ? 'week' : 'day'}</p>
+              </> : ''}
+               
+              </div>
+              <div className='flex justify-between gap-5 items-center'>
+                       <p>Tex :</p>
+              <p className='text-gray-800 text-[12px]'>18% GST</p>
+              
+                 {form.type ? <>
+                <p className='text-sm text-secondary'>{car[form.type].price *18/100} GST </p>
+              </> : ''}
+            
+              </div>
+              <div className='flex justify-between gap-5 items-center'>
+                <p>Total :</p>
+                     {form.type ? <>
+                <p className='text-sm text-secondary'>{car[form.type].price + car[form.type].price *18/100} INR/{form.type === 'rentWeek' ? 'week' : 'day'}</p>
+              </> : ''}
+                
+              </div>
+           
+            
+            </div>
+
+            <Button disabled={isPanding} type="submit" className={'sm:text-2xl py-6 px-8 '} >{isPanding ? 'Booking...' : 'Book Now'}</Button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default CarBooking

@@ -1,71 +1,51 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import ActivityGallery from '../ActivityGallery'
 import { Button } from '@/components/ui/button'
+import Script from "next/script";
+import optionHandler from "@/helper/razorpatoption"
+import CarBooking from '../booking-form/CarBooking';
 
-export const generateMetadata = async ({ params }) => {
-    await connectDB()
-    const { slug } = params
-    const cars = await getCarBySlug(slug);
-    if (!cars) {
-        return {
-            title: "Car Not Found | Nyla Travels",
-        };
-    }
-    const image = cars?.imageUrl?.map((img) => img.url)
-
-    const data = JSON.parse(JSON.stringify(cars))
-    return {
-        title: `${data.carName} | Nyla Travels`,
-        description: data.description?.slice(0, 150) || `Book ${cars.carName} with Nyla Travels`,
-        keywords: [data.carName,
-        data.categorie,
-        data.bodyType,
-        data.fuelType,
-        data.transmission,
-        ].filter(Boolean),
-        alternates: {
-            canonical: `/cars/${data.slug}`,
-        },
-        openGraph: {
-            title: `${data.carName} | Nyla Travels`,
-            description: data.description?.slice(0, 150) || `Book ${cars.carName} with Nyla Travels`,
-            url: `/cars/${data.slug}`,
-            siteName: 'Nyla Travels',
-            images: [
-                {
-                    url: image[0] || '/og-car-rental.png',
-                    width: 800,
-                    height: 600,
-                    alt: data.carName,
-                }
-            ]
-
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: `${data.carName} | Nyla Travels`,
-            description: data.description?.slice(0, 150) || `Book ${cars.carName} with Nyla Travels`,
-            images: [
-                {
-                    url: image[0] || '/og-car-rental.png',
-                    width: 800,
-                    height: 600,
-                    alt: data.carName,
-                }
-            ]
-        },
-        robots: {
-            index: true,
-            follow: true,
-        }
-    }
-
-}
 
 function CarDeatls({ car }) {
+ const [bookForm,setBookForm] = useState(false)
 
+    const handleBookNow = async () => {
+        try {
+            const res = await fetch('/api/booking/create-booking', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    bookingType: "car", 
+                    itemId: car._id,
+                }),
+            });
+            const data = await res.json();
+           
+            if (res.ok) {
+                // Booking created successfully, now initiate Razorpay payment
+                const orderResponse = await fetch('/api/payment/create-order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ bookingId: data.booking._id }),
+                })
+                const order = await orderResponse.json();
+                if (orderResponse.ok) {
+                    // Open Razorpay payment modal
+                    optionHandler(order.order, data.booking._id);
+                } else {
+                    console.error('Error creating order:', order.message);
+                }
+            }
+        } catch (error) {
+            console.error('Error creating booking:', error);
+        }
+    }
 
     const handleWhatssapp = () => {
         const msg = `Hello, I want to book a car.
@@ -117,7 +97,14 @@ Please let me know about the availability and booking process.`;
             "availability": car.isActive ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
         }
     }
-
+    console.log("booking form",bookForm)
+    //  if(bookForm){
+    //     return (
+    //         <>
+    //         <CarBooking car={car} />
+    //         </>
+    //     )
+    //  }
 
     return (
         <>
@@ -127,8 +114,15 @@ Please let me know about the availability and booking process.`;
                     __html: JSON.stringify(jsonLd),
                 }}
             />
-            <div className="max-w-screen lg:max-w-7xl mx-auto px-4 py-10">
-                <section>
+          
+             {bookForm ? <>
+                     <div className='w-full z-50 fixed inset-0 overflow-y-auto'>
+                        <CarBooking car={car} bookingForm={setBookForm}/>
+                     </div>
+                    </>:''}
+            <div className="max-w-screen lg:max-w-7xl z-50 mx-auto px-4 py-10">
+                <section className='relative'>
+                   
                     <div>
                         <div className='mb-10'>
                             <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium mb-3">
@@ -229,7 +223,7 @@ Please let me know about the availability and booking process.`;
                                         <p className='text-primary text-sm'>12000 INR</p>
                                     </div>
                                     <div className='flex flex-col justify-between items-center gap-5 '>
-                                        <Button className={'w-full text-xl py-6'}>Book Now</Button>
+                                        <Button onClick={() =>setBookForm(!bookForm)} className={'w-full text-xl py-6'}>Book Now</Button>
                                         <Button onClick={handleWhatssapp} className={'w-full text-xl py-6 bg-green-500'}>Enquiry on Whatsapp</Button>
                                     </div>
                                 </div>

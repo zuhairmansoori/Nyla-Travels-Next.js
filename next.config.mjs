@@ -5,7 +5,7 @@ const nextConfig = {
   
 
   
-  allowedDevOrigins: ['epixylous-chromatographic-linda.ngrok-free.dev','192.168.1.10'],
+  allowedDevOrigins: ['epixylous-chromatographic-linda.ngrok-free.dev','192.168.1.1'],
   images: {
     remotePatterns: [
       {

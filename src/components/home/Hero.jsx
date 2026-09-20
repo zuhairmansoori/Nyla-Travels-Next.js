@@ -11,7 +11,7 @@ function Hero() {
       <div>
         <section className=' relative min-h-screen pb-32 '>
           <Image
-            src='/heroimg5.webp' alt='hero image' fill priority sizes='100vw'
+            src='/heroimg5.png' alt='hero image' fill priority sizes='100vw'
              className='object-cover' />
           <div className="absolute inset-0 bg-black/40">
           </div>
