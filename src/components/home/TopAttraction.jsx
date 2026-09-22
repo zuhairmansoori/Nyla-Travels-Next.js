@@ -91,7 +91,7 @@ useEffect(() => {
     // initial={{opacity: 0, y:50}}
     // whileInView={{opacity: 1,y: 0}}
     // transition={{duration:1,delay:0.3}}
-    className=' container mx-auto px-4 pt-20 overflow-hidden '>
+    className=' container mx-auto  pt-20 overflow-hidden '>
       <motion.div
           initial={{opacity: 0, y:50}}
            whileInView={{opacity: 1,y: 0}} 
