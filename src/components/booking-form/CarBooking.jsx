@@ -113,7 +113,7 @@ function CarBooking({ car, bookingForm }) {
     }
 
   return (
-    <div className='  bg-transparent backdrop-blur-sm mb-10  p-4'>
+    <div className='  bg-transparent backdrop-blur-sm pb-10  p-4'>
            <Script
                 src="https://checkout.razorpay.com/v1/checkout.js"
                 strategy="afterInteractive"
