@@ -28,12 +28,12 @@ async function getItemDetails(model, itemId){
 
 
 export async function POST(req){
-    //   const session = await auth.api.getSession({
-    //     headers: await headers(),
-    // })
-    // if(!session || !session.user){
-    //     return NextResponse.json({message: "Unauthorized"}, {status: 401});
-    // }
+      const session = await auth.api.getSession({
+        headers: await headers(),
+    })
+    if(!session || !session.user){
+        return NextResponse.json({message: "Unauthorized"}, {status: 401});
+    }
    
     let bookingItemDetails;
     let details ;
@@ -85,9 +85,10 @@ export async function POST(req){
             }
         }
       
-    //   const name = session.user.name.split(' ')
+      const name = form.name.split(' ')
+      console.log('name',form.name)
         const booking = await Booking.create({
-            user:form.name,
+            user:session.user.id,
             bookingType,
             itemId,
             customer: {

@@ -17,7 +17,7 @@ export default function ActivityGallery({ images, title }) {
     return (
         <div className="space-y-3 min-w-0">
             {/* Main image */}
-            <div className="lg:aspect-16/7 rounded-2xl overflow-hidden bg-gray-100">
+            <div className="aspect- lg:aspect-16/7 rounded-2xl overflow-hidden bg-gray-100">
                 <Image
                     src={images[activeIndex].url}
                     alt={title}
