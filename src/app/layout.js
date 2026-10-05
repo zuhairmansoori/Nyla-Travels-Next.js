@@ -33,6 +33,24 @@ export const metadata = {
 
   keywords: [
     "Nyla Travels",
+    "best travel agency in delhi",
+    "best travel agency in laximi nagar",
+    "best travel agency in india",
+    "car rental services in dubai",
+    "car rental services in delhi",
+    "airport transfer services in delhi",
+    "airport transfer services in dubai",
+      "airport transfer services in all over world",
+      "cheap hajj and umrah packages",
+      "best hajj and umrah packages",
+
+    "travel agency in delhi",
+    "visa services in delhi",
+    "holiday packages in delhi",
+    "cheap flights in delhi",
+    "hajj and umrah packages in delhi",
+     "hajj and umrah packages in laxmi nagar",
+     "best flight tickets booking in delhi",
     "Flights",
     "Dubai Visa",
     "Holiday Packages",
@@ -75,7 +93,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/og-home.jpg",
+        url: "/og-home.png",
         width: 1200,
         height: 630,
         alt: "Nyla Travels",
@@ -88,7 +106,7 @@ export const metadata = {
     title: "Nyla Travels",
     description:
       "Flights, Hotels, Visa Services & Holiday Packages",
-    images: ["/og-home.jpg"],
+    images: ["/og-home.png"],
   },
     icons: {
     icon: "/icon.svg",

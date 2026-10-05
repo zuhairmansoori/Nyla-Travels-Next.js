@@ -141,6 +141,10 @@ html.lenis body {
 body{
   scroll-behavior: smooth
 }
+p,span,li,a,h1,h2,h3,h4,h5,h6,button,input,textarea,select{
+  font-family:var(--font-cinzel) !important;
+  /* font-weight: 400 !important; */
+}
 
 @layer base {
   * {

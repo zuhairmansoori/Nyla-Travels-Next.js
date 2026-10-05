@@ -11,8 +11,8 @@ const MotionImage = motion.create(Image);
 function OurMission() {
   return (
     <>
-      <section className='bg-gray-100 overflow-hidden'>
-        <div className='flex flex-col md:flex-row items-center  justify-around md:items-center   gap-5 pt-10 px-4 md:px-20'>
+      <section className='bg-gray-100 h-screen pt-40 flex flex-col justify-center items-center overflow-hidden'>
+        <div className='flex flex-col md:flex-row items-center  justify-around  lg:justify-center   gap-5 pt-10 px-4 md:px-20'>
           <div className='md:w-1/2'>
             <HeadingMotion>
                <h2 className='text-3xl  lg:text-5xl text-primary font-cinzel tracking-wider text-center md:text-left font-bold mb-8'>Our Mission</h2>
@@ -25,7 +25,7 @@ function OurMission() {
          transition={{duration:1}}
             className='text-lg md:text-xl text-gray-700 mt-4 text-center md:text-left'>At Nyla Travels, Our mission is to deliver seamless travel experiences through reliable services, personalized holiday planning, and dedicated customer support. We strive to help every traveler explore the world with confidence by offering carefully designed travel solutions that combine convenience, value, and unforgettable memories.</motion.p>
           </div>
-          <div className=' py-10  flex items-center justify-center '>
+          <div className=' py-20  flex items-center justify-center '>
             <MotionImage
               initial={{opacity:0 ,x:40}}
             whileInView={{opacity:1 , x:0}}
@@ -41,7 +41,7 @@ function OurMission() {
       whileInView={{opacity:1 , y:0}}
       viewport={{once:true}}
       transition={{duration:1}}
-      className='flex flex-wrap items-center justify-center pt-20 lg:py-0  md:px-30 lg:px-40 lg:justify-start gap-10 pb-10'>
+      className='flex flex-wrap items-center justify-center  lg:py-0  md:px-30 lg:px-40 lg:justify-start gap-10 pb-10'>
         <span className='text-secondary flex text-center flex-col justify-center items-center'><IoIosContact size={54} />Costumer First</span>
         <span className='text-secondary flex flex-col text-center justify-center items-center'><AiOutlineSafetyCertificate size={54} />Safe & Reliable</span>
         <span className='text-secondary flex flex-col justify-center text-center items-center'><GiWorld size={54} />Explore The World</span>

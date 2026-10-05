@@ -7,7 +7,7 @@ const MotionImage = motion.create(Image);
 function MdkalimMessage() {
     return (
         <>
-            <section className='py-10 overflow-hidden bg-gray-100'>
+            <section className=' overflow-hidden bg-gray-100'>
                 <div className='flex flex-col-reverse md:flex-row items-center justify-center md:items-center text-lg md:text-xl md:justify-around gap-5 py-10 px-4 md:px-20'>
                     <div className='flex flex-col gap-4 md:w-1/2'>
                     <HeadingMotion>

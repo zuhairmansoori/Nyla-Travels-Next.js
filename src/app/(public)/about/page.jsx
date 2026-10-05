@@ -8,6 +8,7 @@ import MdkalimMessage from '@/components/about/MdkalimMessage'
 import React from 'react'
 import Faq from '@/components/about/ Faq'
 import Testimonials from '@/components/home/Testimonials'
+import Animation from '@/components/about/Animation'
 
 // app/about/metadata.ts (ya page.tsx me export const metadata)
 
@@ -103,9 +104,10 @@ function page() {
       <Hero />
       <About />
       <Stats />
-      <MdkalimMessage />
+      <Animation/>
+      {/* <MdkalimMessage />
       <OverVision />
-      <OurMission />
+      <OurMission /> */}
       <WhyNyla />
       <Testimonials />
       <Faq />

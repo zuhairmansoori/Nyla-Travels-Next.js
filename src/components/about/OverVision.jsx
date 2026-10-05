@@ -7,7 +7,7 @@ const MotionImage = motion.create(Image);
 function OverVision() {
   return (
     <>
-      <section className='bg-gray-100 pt-20 overflow-hidden'>
+      <section className='bg-gray-100 pt-20 h-screen overflow-hidden'>
               <div className='flex flex-col md:flex-row-reverse items-center  justify-center md:items-center md:justify-end  gap-5 py-10 px-4 md:px-20'>
                 <div className='md:w-1/2'>
                 <HeadingMotion>
