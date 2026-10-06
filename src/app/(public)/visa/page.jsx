@@ -1,7 +1,7 @@
 import SearchInput from "@/components/admin/SearchInput"
 import VisaList from "@/components/admin/visa/VisaList"
 import SkeletonLoader from "@/components/SkeletonLoader"
-import {Suspense} from 'react'
+import { Suspense } from 'react'
 
 
 export const metadata = {
@@ -58,62 +58,74 @@ export const metadata = {
   },
 };
 
-export default async function page({searchParams}) {
+export default async function page({ searchParams }) {
   const param = await searchParams
   const search = param.search || ''
 
   const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
+    "@context": "https://schema.org",
+    "@type": "Service",
 
-  name: "Visa Services",
+    name: "Visa Services",
 
-  serviceType: "Visa Services",
+    serviceType: "Visa Services",
 
-  description:
-    "Apply for tourist, business, and visit visas with Nyla Travels. Fast visa processing and expert visa assistance.",
+    description:
+      "Apply for tourist, business, and visit visas with Nyla Travels. Fast visa processing and expert visa assistance.",
 
-  url: "https://nylatravels.com/visa",
+    url: "https://nylatravels.com/visa",
 
-  image: "https://nylatravels.com/og-visa.png",
+    image: "https://nylatravels.com/og-visa.png",
 
-  provider: {
-    "@type": "TravelAgency",
-    name: "Nyla Travels",
-    url: "https://nylatravels.com",
-    logo: "https://nylatravels.com/NylaTravels.png",
-    telephone: "+919213909942",
-  },
+    provider: {
+      "@type": "TravelAgency",
+      name: "Nyla Travels",
+      url: "https://nylatravels.com",
+      logo: "https://nylatravels.com/NylaTravels.png",
+      telephone: "+919213909942",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+919213909942",
+        "contactType": "customer service",
+        "contactOption": "WhatsApp"
+      },
+      "sameAs": [
+        "https://www.instagram.com/nyla.travels/",
 
-  areaServed: {
-    "@type": "Country",
-    name: "India",
-  },
 
-  availableLanguage: [
-    "English",
-    "Hindi",
-    "Urdu",
-  ],
-};
-  
+      ],
+    },
 
- 
+    areaServed: {
+      "@type": "Country",
+      name: "India",
+    },
+
+
+    availableLanguage: [
+      "English",
+      "Hindi",
+      "Urdu",
+    ],
+  };
+
+
+
 
   return (
     <>
       <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(jsonLd),
-      }}
-    />
-     <SearchInput divClassName={''}/>
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
+      <SearchInput divClassName={''} />
       <Suspense key={search} fallback={<SkeletonLoader cardClassName="w-72" gridClassName={'lg:grid-cols-4 max-w-7xl m-auto'} count={'12'} />}>
-                <VisaList search={search}/>
-           
+        <VisaList search={search} />
+
       </Suspense>
- 
+
     </>
   )
 }
