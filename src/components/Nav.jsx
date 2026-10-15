@@ -21,6 +21,7 @@ const link = [
     { name: 'Cars Rental', href: "/cars-rental", icon: <Car /> },
     { name: "Airport Assistant", href: '/airport-assistance', icon: <TowerControl /> },
     { name: 'About Us', href: '/about', icon: <Contact /> },
+    {name:"Hajj&Umrah", href:'/hajjumrah', icon: <Car/>}
 
 ]
 

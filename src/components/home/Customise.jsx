@@ -19,7 +19,7 @@ function Customise() {
           </div>
           <div className="absolute inset-0 z-10 flex items-center justify-start ">
             <div className="max-w-2xl p-4 md:pl-20">
-              <h2 className="text-2xl text-shadow-premium md:text-6xl font-bold text-white">
+              <h2 className="text-2xl  md:text-6xl font-bold text-white">
                 Your Journey, Designed Just for You
               </h2>
 
