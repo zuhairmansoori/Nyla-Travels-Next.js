@@ -32,7 +32,7 @@ function Hero() {
     },[])
   return (
     <>
-      <section ref={ref} className='overflow-x-hidden'>
+      <section ref={ref} className='overflow-hidden'>
         <div className='relative h-[90vh] pb-32'>
             <Image
             src='/images/Kaaba.png'

@@ -78,7 +78,7 @@ function HajjUmrahServices() {
     }, { scope: ref })
     return (
         <>
-            <section ref={ref} className='py-25 bg-[url(/images/Kaaba.png)]  bg-contain bg-no-repeat lg:bg-cover'>
+            <section ref={ref} className='py-25 bg-[url(/images/Kaaba.png)] overflow-hidden bg-contain bg-no-repeat lg:bg-cover'>
                 <div className='mx-auto max-w-7xl px-6'>
                     <div className='mx-auto mb-14 max-w-2xl text-center'>
                         <span className='bg-primary/10 px-4 py-1 subheading rounded-2xl text-primary font-bold text-sm'>Your Trusted Hajj and Umrah Companion</span>
