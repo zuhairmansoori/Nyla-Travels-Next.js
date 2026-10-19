@@ -9,6 +9,7 @@ import ProfileIcon from './ProfileIcon'
 import { clientAuth } from '@/lib/client-auth'
 import { Button } from './ui/button'
 import GoogleOneTap from './GoogleOneTap'
+import { FaMosque } from 'react-icons/fa6'
 
 
 
@@ -21,7 +22,7 @@ const link = [
     { name: 'Cars Rental', href: "/cars-rental", icon: <Car /> },
     { name: "Airport Assistant", href: '/airport-assistance', icon: <TowerControl /> },
     { name: 'About Us', href: '/about', icon: <Contact /> },
-    {name:"Hajj&Umrah", href:'/hajjumrah', icon: <Car/>}
+    {name:"Hajj&Umrah", href:'/hajjumrah', icon: <FaMosque/>}
 
 ]
 
@@ -85,6 +86,7 @@ function Nav() {
                             <div onClick={() => setismobile(!ismobile)} className='md:hidden'>
                                 <Menu />
                             </div>
+                            
                             <Link href={"/"} className='flex items-center justify-center gap-4'>
                             <div className='flex justify-center items-center'>
                                 <Image src={'/NylaTravels.svg'} alt='Nyla Travels' width={60} height={60} loading='eager' />
